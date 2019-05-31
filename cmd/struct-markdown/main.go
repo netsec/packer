@@ -114,7 +114,7 @@ func main() {
 
 			doc := Doc{
 				Name: name,
-				Type: fmt.Sprintf("%s", field.Type),
+				Type: fmt.Sprintf("%s", b[field.Type.Pos()-1:field.Type.End()-1]),
 				Docs: docs,
 			}
 			if required {
