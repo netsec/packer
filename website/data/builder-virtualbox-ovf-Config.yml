@@ -1,0 +1,103 @@
+source_path: builder/virtualbox/ovf/config.go
+name: Config
+required:
+- name: checksum
+  type: string
+  docs: |
+    The checksum for the source_path file. The
+    algorithm to use when computing the checksum can be optionally specified
+    with checksum_type. When checksum_type is not set packer will guess the
+    checksumming type based on checksum length. checksum can be also be a
+    file or an URL, in which case checksum_type must be set to file; the
+    go-getter will download it and use the first hash found.
+- name: source_path
+  type: string
+  docs: |
+    The path to an OVF or OVA file that acts as the
+    source of this build. This currently must be a local file.
+not_required:
+- name: checksum_type
+  type: string
+  docs: |
+    The type of the checksum specified in checksum.
+    Valid values are none, md5, sha1, sha256, or sha512. Although the
+    checksum will not be verified when checksum_type is set to "none", this is
+    not recommended since OVA files can be very large and corruption does happen
+    from time to time.
+- name: guest_additions_mode
+  type: string
+  docs: |
+    The method by which guest additions are
+    made available to the guest for installation. Valid options are upload,
+    attach, or disable. If the mode is attach the guest additions ISO will
+    be attached as a CD device to the virtual machine. If the mode is upload
+    the guest additions ISO will be uploaded to the path specified by
+    guest_additions_path. The default value is upload. If disable is used,
+    guest additions won't be downloaded, either.
+- name: guest_additions_path
+  type: string
+  docs: |
+    The path on the guest virtual machine
+    where the VirtualBox guest additions ISO will be uploaded. By default this
+    is VBoxGuestAdditions.iso which should upload into the login directory of
+    the user. This is a configuration
+    template where the Version
+    variable is replaced with the VirtualBox version.
+- name: guest_additions_interface
+  type: string
+  docs: |
+    The interface type to use to mount
+    guest additions when guest_additions_mode is set to attach. Will
+    default to the value set in iso_interface, if iso_interface is set.
+    Will default to "ide", if iso_interface is not set. Options are "ide" and
+    "sata".
+- name: guest_additions_sha256
+  type: string
+  docs: |
+    The SHA256 checksum of the guest
+    additions ISO that will be uploaded to the guest VM. By default the
+    checksums will be downloaded from the VirtualBox website, so this only needs
+    to be set if you want to be explicit about the checksum.
+- name: guest_additions_url
+  type: string
+  docs: |
+    The URL to the guest additions ISO
+    to upload. This can also be a file URL if the ISO is at a local path. By
+    default, the VirtualBox builder will attempt to find the guest additions ISO
+    on the local file system. If it is not available locally, the builder will
+    download the proper guest additions ISO from the internet.
+- name: import_flags
+  type: '&{%!s(token.Pos=4527) <nil> string}'
+  docs: |
+    Additional flags to pass to
+    VBoxManage import. This can be used to add additional command-line flags
+    such as --eula-accept to accept a EULA in the OVF.
+- name: import_opts
+  type: string
+  docs: |
+    Additional options to pass to the
+    VBoxManage import. This can be useful for passing keepallmacs or
+    keepnatmacs options for existing ovf images.
+- name: target_path
+  type: string
+  docs: |
+    The path where the OVA should be saved
+    after download. By default, it will go in the packer cache, with a hash of
+    the original filename as its name.
+- name: vm_name
+  type: string
+  docs: |
+    This is the name of the OVF file for the new virtual
+    machine, without the file extension. By default this is packer-BUILDNAME,
+    where "BUILDNAME" is the name of the build.
+- name: keep_registered
+  type: bool
+  docs: |
+    Set this to true if you would like to keep
+    the VM registered with virtualbox. Defaults to false.
+- name: skip_export
+  type: bool
+  docs: |
+    Defaults to false. When enabled, Packer will
+    not export the VM. Useful if the build output is not the resultant image,
+    but created inside the VM.

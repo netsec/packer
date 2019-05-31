@@ -1,0 +1,45 @@
+source_path: builder/tencentcloud/cvm/image_config.go
+name: TencentCloudImageConfig
+required:
+- name: image_name
+  type: string
+  docs: |
+    The name you want to create your customize image,
+    it should be composed of no more than 20 characters, of letters, numbers
+    or minus sign.
+not_required:
+- name: image_description
+  type: string
+  docs: |
+    Image description.
+- name: reboot
+  type: bool
+  docs: |
+    Whether shutdown cvm to create Image. Default value is
+    false.
+- name: force_poweroff
+  type: bool
+  docs: |
+    Whether to force power off cvm when create image.
+    Default value is false.
+- name: sysprep
+  type: bool
+  docs: |
+    Whether enable Sysprep during creating windows image.
+- name: image_force_delete
+  type: bool
+  docs: Image Force Delete
+- name: image_copy_regions
+  type: '&{%!s(token.Pos=1086) <nil> string}'
+  docs: |
+    regions that will be copied to after
+    your image created.
+- name: image_share_accounts
+  type: '&{%!s(token.Pos=1237) <nil> string}'
+  docs: |
+    accounts that will be shared to
+    after your image created.
+- name: skip_region_validation
+  type: bool
+  docs: |
+    Do not check region and zone when validate.

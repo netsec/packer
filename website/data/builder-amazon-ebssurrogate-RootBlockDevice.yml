@@ -1,0 +1,40 @@
+source_path: builder/amazon/ebssurrogate/root_block_device.go
+name: RootBlockDevice
+required: []
+not_required:
+- name: source_device_name
+  type: string
+  docs: Source Device Name
+- name: device_name
+  type: string
+  docs: |
+    The device name exposed to the instance (for
+    example, /dev/sdh or xvdh). Required for every device in the block
+    device mapping.
+- name: delete_on_termination
+  type: bool
+  docs: |
+    Indicates whether the EBS volume is
+    deleted on instance termination. Default false. NOTE: If this
+    value is not explicitly set to true and volumes are not cleaned up by
+    an alternative method, additional volumes will accumulate after every
+    build.
+- name: iops
+  type: int64
+  docs: |
+    The number of I/O operations per second (IOPS) that
+    the volume supports. See the documentation on
+    IOPs
+    for more information
+- name: volume_type
+  type: string
+  docs: |
+    The volume type. gp2 for General Purpose
+    (SSD) volumes, io1 for Provisioned IOPS (SSD) volumes, st1 for
+    Throughput Optimized HDD, sc1 for Cold HDD, and standard for
+    Magnetic volumes.
+- name: volume_size
+  type: int64
+  docs: |
+    The size of the volume, in GiB. Required if
+    not specifying a snapshot_id.

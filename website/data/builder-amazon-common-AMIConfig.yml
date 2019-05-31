@@ -1,0 +1,143 @@
+source_path: builder/amazon/common/ami_config.go
+name: AMIConfig
+required:
+- name: ami_name
+  type: string
+  docs: |
+    The name of the resulting AMI that will appear when
+    managing AMIs in the AWS console or via APIs. This must be unique. To help
+    make this unique, use a function like timestamp (see template
+    engine for more info).
+not_required:
+- name: ami_description
+  type: string
+  docs: |
+    The description to set for the resulting
+    AMI(s). By default this description is empty. This is a template
+    engine, see Build template
+    data for more information.
+- name: ami_virtualization_type
+  type: string
+  docs: |
+    The type of virtualization for the AMI
+    you are building. This option is required to register HVM images. Can be
+    paravirtual (default) or hvm.
+- name: ami_users
+  type: '&{%!s(token.Pos=1301) <nil> string}'
+  docs: |
+    A list of account IDs that have access to
+    launch the resulting AMI(s). By default no additional users other than the
+    user creating the AMI has permissions to launch it.
+- name: ami_groups
+  type: '&{%!s(token.Pos=1571) <nil> string}'
+  docs: |
+    A list of groups that have access to
+    launch the resulting AMI(s). By default no groups have permission to launch
+    the AMI. all will make the AMI publicly accessible.
+- name: ami_product_codes
+  type: '&{%!s(token.Pos=1785) <nil> string}'
+  docs: |
+    A list of product codes to
+    associate with the AMI. By default no product codes are associated with the
+    AMI.
+- name: ami_regions
+  type: '&{%!s(token.Pos=2082) <nil> string}'
+  docs: |
+    A list of regions to copy the AMI to.
+    Tags and attributes are copied along with the AMI. AMI copying takes time
+    depending on the size of the AMI, but will generally take many minutes.
+- name: skip_region_validation
+  type: bool
+  docs: |
+    Set to true if you want to skip
+    validation of the ami_regions configuration option. Default false.
+- name: tags
+  type: TagMap
+  docs: |
+    Tags applied to the AMI. This is a
+    template engine, see Build template
+    data for more information.
+- name: ena_support
+  type: '&{%!s(token.Pos=3045) bool}'
+  docs: |
+    Enable enhanced networking (ENA but not
+    SriovNetSupport) on HVM-compatible AMIs. If set, add
+    ec2:ModifyInstanceAttribute to your AWS IAM policy. If false, this will
+    disable enhanced networking in the final AMI as opposed to passing the
+    setting through unchanged from the source. Note: you must make sure
+    enhanced networking is enabled on your instance. See Amazon's
+    documentation on enabling enhanced
+    networking.
+- name: sriov_support
+  type: bool
+  docs: |
+    Enable enhanced networking (SriovNetSupport but
+    not ENA) on HVM-compatible AMIs. If true, add
+    ec2:ModifyInstanceAttribute to your AWS IAM policy. Note: you must make
+    sure enhanced networking is enabled on your instance. See Amazon's
+    documentation on enabling enhanced
+    networking.
+    Default false.
+- name: force_deregister
+  type: bool
+  docs: |
+    Force Packer to first deregister an existing
+    AMI if one with the same name already exists. Default false.
+- name: force_delete_snapshot
+  type: bool
+  docs: |
+    Force Packer to delete snapshots
+    associated with AMIs, which have been deregistered by force_deregister.
+    Default false.
+- name: encrypt_boot
+  type: '&{%!s(token.Pos=4311) bool}'
+  docs: |
+    Whether or not to encrypt the resulting AMI when
+    copying a provisioned instance to an AMI. By default, Packer will keep the
+    encryption setting to what it was in the source image. Setting false will
+    result in an unencrypted image, and true will result in an encrypted one.
+- name: kms_key_id
+  type: string
+  docs: |
+    ID, alias or ARN of the KMS key to use for boot
+    volume encryption. This only applies to the main region, other regions
+    where the AMI will be copied will be encrypted by the default EBS KMS key.
+    For valid formats see KmsKeyId in the AWS API docs -
+    CopyImage.
+    This field is validated by Packer, when using an alias, you will have to
+    prefix kms_key_id with alias/.
+- name: region_kms_key_ids
+  type: '&{%!s(token.Pos=5610) string string}'
+  docs: |
+    a map of regions to copy the ami
+    to, along with the custom kms key id (alias or arn) to use for encryption
+    for that region. Keys must match the regions provided in ami_regions. If
+    you just want to encrypt using a default ID, you can stick with
+    kms_key_id and ami_regions. If you want a region to be encrypted with
+    that region's default key ID, you can use an empty string "" instead of a
+    key id in this map. (e.g. "us-east-1": "") However, you cannot use
+    default key IDs if you are using this in conjunction with snapshot_users
+    -- in that situation you must use custom keys. For valid formats see
+    KmsKeyId in the AWS API docs -
+    CopyImage.
+- name: snapshot_tags
+  type: TagMap
+  docs: |
+    Tags to apply to snapshot.
+    They will override AMI tags if already applied to snapshot. This is a
+    template engine, see Build template
+    data for more information.
+- name: snapshot_users
+  type: '&{%!s(token.Pos=6218) <nil> string}'
+  docs: |
+    A list of account IDs that have
+    access to create volumes from the snapshot(s). By default no additional
+    users other than the user creating the AMI has permissions to create
+    volumes from the backing snapshot(s).
+- name: snapshot_groups
+  type: '&{%!s(token.Pos=6534) <nil> string}'
+  docs: |
+    A list of groups that have access to
+    create volumes from the snapshot(s). By default no groups have permission
+    to create volumes from the snapshot(s). all will make the snapshot
+    publicly accessible.

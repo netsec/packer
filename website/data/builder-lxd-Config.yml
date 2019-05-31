@@ -1,0 +1,44 @@
+source_path: builder/lxd/config.go
+name: Config
+required:
+- name: image
+  type: string
+  docs: |
+    The source image to use when creating the build
+    container. This can be a (local or remote) image (name or fingerprint).
+    E.G. my-base-image, ubuntu-daily:x, 08fababf6f27, ...
+not_required:
+- name: output_image
+  type: string
+  docs: |
+    The name of the output artifact. Defaults to
+    name.
+- name: container_name
+  type: string
+  docs: Container Name
+- name: command_wrapper
+  type: string
+  docs: |
+    Lets you prefix all builder commands, such as
+    with ssh for a remote build host. Defaults to "".
+- name: profile
+  type: string
+  docs: Profile
+- name: init_sleep
+  type: string
+  docs: |
+    The number of seconds to sleep between launching
+    the LXD instance and provisioning it; defaults to 3 seconds.
+- name: publish_properties
+  type: '&{%!s(token.Pos=1602) string string}'
+  docs: |
+    Pass key values to the publish
+    step to be set as properties on the output image. This is most helpful to
+    set the description, but can be used to set anything needed. See
+    https://stgraber.org/2016/03/30/lxd-2-0-image-management-512/
+    for more properties.
+- name: launch_config
+  type: '&{%!s(token.Pos=1793) string string}'
+  docs: |
+    List of key/value pairs you wish to
+    pass to lxc launch via --config. Defaults to empty.

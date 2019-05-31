@@ -1,0 +1,74 @@
+source_path: builder/lxc/config.go
+name: Config
+required:
+- name: config_file
+  type: string
+  docs: |
+    The path to the lxc configuration file.
+- name: template_name
+  type: string
+  docs: |
+    The LXC template name to use.
+- name: template_environment_vars
+  type: '&{%!s(token.Pos=2812) <nil> string}'
+  docs: |
+    Environmental variables to
+    use to build the template with.
+not_required:
+- name: output_directory
+  type: string
+  docs: |
+    The directory in which to save the exported
+    tar.gz. Defaults to output-<BuildName> in the current directory.
+- name: container_name
+  type: string
+  docs: |
+    The name of the LXC container. Usually stored
+    in /var/lib/lxc/containers/<container_name>. Defaults to
+    packer-<BuildName>.
+- name: command_wrapper
+  type: string
+  docs: |
+    Allows you to specify a wrapper command, such
+    as ssh so you can execute packer builds on a remote host. Defaults to
+    Empty.
+- name: init_timeout
+  type: string
+  docs: |
+    The timeout in seconds to wait for the the
+    container to start. Defaults to 20 seconds.
+- name: create_options
+  type: '&{%!s(token.Pos=1535) <nil> string}'
+  docs: |
+    Options to pass to lxc-create. For
+    instance, you can specify a custom LXC container configuration file with
+    ["-f", "/path/to/lxc.conf"]. Defaults to []. See man 1 lxc-create for
+    available options.
+- name: start_options
+  type: '&{%!s(token.Pos=1843) <nil> string}'
+  docs: |
+    Options to pass to lxc-start. For
+    instance, you can override parameters from the LXC container configuration
+    file via ["--define", "KEY=VALUE"]. Defaults to []. See
+    man 1 lxc-start for available options.
+- name: attach_options
+  type: '&{%!s(token.Pos=2159) <nil> string}'
+  docs: |
+    Options to pass to lxc-attach. For
+    instance, you can prevent the container from inheriting the host machine's
+    environment by specifying ["--clear-env"]. Defaults to []. See
+    man 1 lxc-attach for available options.
+- name: template_parameters
+  type: '&{%!s(token.Pos=2658) <nil> string}'
+  docs: |
+    Options to pass to the given
+    lxc-template command, usually located in
+    /usr/share/lxc/templates/lxc-<template_name>. Note: This gets passed as
+    ARGV to the template command. Ensure you have an array of strings, as a
+    single string with spaces probably won't work. Defaults to [].
+- name: target_runlevel
+  type: int
+  docs: |
+    The minimum run level to wait for the
+    container to reach. Note some distributions (Ubuntu) simulate run levels
+    and may report 5 rather than 3.

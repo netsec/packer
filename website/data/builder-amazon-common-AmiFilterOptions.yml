@@ -1,0 +1,7 @@
+source_path: builder/amazon/common/run_config.go
+name: AmiFilterOptions
+required: []
+not_required:
+- name: most_recent
+  type: bool
+  docs: Most Recent

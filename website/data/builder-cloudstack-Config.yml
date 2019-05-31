@@ -1,0 +1,204 @@
+source_path: builder/cloudstack/config.go
+name: Config
+required:
+- name: api_url
+  type: string
+  docs: |
+    The CloudStack API endpoint we will connect to. It can
+    also be specified via environment variable CLOUDSTACK_API_URL, if set.
+- name: api_key
+  type: string
+  docs: |
+    The API key used to sign all API requests. It can also
+    be specified via environment variable CLOUDSTACK_API_KEY, if set.
+- name: secret_key
+  type: string
+  docs: |
+    The secret key used to sign all API requests. It
+    can also be specified via environment variable CLOUDSTACK_SECRET_KEY, if
+    set.
+- name: network
+  type: string
+  docs: |
+    The name or ID of the network to connect the instance
+    to.
+- name: service_offering
+  type: string
+  docs: |
+    The name or ID of the service offering used
+    for the instance.
+- name: source_iso
+  type: string
+  docs: |
+    The name or ID of an ISO that will be mounted
+    before booting the instance. This option is mutually exclusive with
+    source_template. When using source_iso, both disk_offering and
+    hypervisor are required.
+- name: source_template
+  type: string
+  docs: |
+    The name or ID of the template used as base
+    template for the instance. This option is mutually exclusive with
+    source_iso.
+- name: zone
+  type: string
+  docs: |
+    The name or ID of the zone where the instance will be
+    created.
+- name: template_os
+  type: string
+  docs: |
+    The name or ID of the template OS for the new
+    template that will be created.
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: async_timeout
+  type: '&{time Duration}'
+  docs: |
+    The time duration to wait for async calls to
+    finish. Defaults to 30m.
+- name: http_get_only
+  type: bool
+  docs: |
+    Some cloud providers only allow HTTP GET calls
+    to their CloudStack API. If using such a provider, you need to set this to
+    true in order for the provider to only make GET calls and no POST calls.
+- name: ssl_no_verify
+  type: bool
+  docs: |
+    Set to true to skip SSL verification.
+    Defaults to false.
+- name: cidr_list
+  type: '&{%!s(token.Pos=2091) <nil> string}'
+  docs: |
+    List of CIDR's that will have access to the new
+    instance. This is needed in order for any provisioners to be able to
+    connect to the instance. Defaults to [ "0.0.0.0/0" ]. Only required when
+    use_local_ip_address is false.
+- name: create_security_group
+  type: bool
+  docs: |
+    If true a temporary security group
+    will be created which allows traffic towards the instance from the
+    cidr_list. This option will be ignored if security_groups is also
+    defined. Requires expunge set to true. Defaults to false.
+- name: disk_offering
+  type: string
+  docs: |
+    The name or ID of the disk offering used for the
+    instance. This option is only available (and also required) when using
+    source_iso.
+- name: disk_size
+  type: int64
+  docs: |
+    The size (in GB) of the root disk of the new
+    instance. This option is only available when using source_template.
+- name: expunge
+  type: bool
+  docs: |
+    Set to true to expunge the instance when it is
+    destroyed. Defaults to false.
+- name: hypervisor
+  type: string
+  docs: |
+    The target hypervisor (e.g. XenServer, KVM) for
+    the new template. This option is required when using source_iso.
+- name: instance_name
+  type: string
+  docs: |
+    The name of the instance. Defaults to
+    "packer-UUID" where UUID is dynamically generated.
+- name: project
+  type: string
+  docs: |
+    The name or ID of the project to deploy the instance
+    to.
+- name: public_ip_address
+  type: string
+  docs: |
+    The public IP address or it's ID used for
+    connecting any provisioners to. If not provided, a temporary public IP
+    address will be associated and released during the Packer run.
+- name: public_port
+  type: int
+  docs: |
+    The fixed port you want to configure in the port
+    forwarding rule. Set this attribute if you do not want to use the a random
+    public port.
+- name: security_groups
+  type: '&{%!s(token.Pos=4366) <nil> string}'
+  docs: |
+    A list of security group IDs or
+    names to associate the instance with.
+- name: prevent_firewall_changes
+  type: bool
+  docs: |
+    Set to true to prevent network
+    ACLs or firewall rules creation. Defaults to false.
+- name: temporary_keypair_name
+  type: string
+  docs: |
+    The name of the temporary SSH key pair
+    to generate. By default, Packer generates a name that looks like
+    packer_<UUID>, where <UUID> is a 36 character unique identifier.
+- name: use_local_ip_address
+  type: bool
+  docs: |
+    Set to true to indicate that the
+    provisioners should connect to the local IP address of the instance.
+- name: user_data
+  type: string
+  docs: |
+    User data to launch with the instance. This is a
+    template engine see User Data bellow for
+    more details. Packer will not automatically wait for a user script to
+    finish before shutting down the instance this must be handled in a
+    provisioner.
+- name: user_data_file
+  type: string
+  docs: |
+    Path to a file that will be used for the user
+    data when launching the instance. This file will be parsed as a template
+    engine see User Data bellow for more
+    details.
+- name: template_name
+  type: string
+  docs: |
+    The name of the new template. Defaults to
+    "packer-{{timestamp}}" where timestamp will be the current time.
+- name: template_display_text
+  type: string
+  docs: |
+    The display text of the new template.
+    Defaults to the template_name.
+- name: template_featured
+  type: bool
+  docs: |
+    Set to true to indicate that the template
+    is featured. Defaults to false.
+- name: template_public
+  type: bool
+  docs: |
+    Set to true to indicate that the template
+    is available for all accounts. Defaults to false.
+- name: template_password_enabled
+  type: bool
+  docs: |
+    Set to true to indicate the
+    template should be password enabled. Defaults to false.
+- name: template_requires_hvm
+  type: bool
+  docs: |
+    Set to true to indicate the template
+    requires hardware-assisted virtualization. Defaults to false.
+- name: template_scalable
+  type: bool
+  docs: |
+    Set to true to indicate that the template
+    contains tools to support dynamic scaling of VM cpu/memory. Defaults to
+    false.
+- name: template_tag
+  type: string
+  docs: Template Tag

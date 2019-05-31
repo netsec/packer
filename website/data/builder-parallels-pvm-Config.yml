@@ -1,0 +1,29 @@
+source_path: builder/parallels/pvm/config.go
+name: Config
+required:
+- name: source_path
+  type: string
+  docs: |
+    The path to a PVM directory that acts as the source
+    of this build.
+not_required:
+- name: skip_compaction
+  type: bool
+  docs: |
+    Virtual disk image is compacted at the end of
+    the build process using prl_disk_tool utility (except for the case that
+    disk_type is set to plain). In certain rare cases, this might corrupt
+    the resulting disk image. If you find this to be the case, you can disable
+    compaction using this configuration value.
+- name: vm_name
+  type: string
+  docs: |
+    This is the name of the PVM directory for the new
+    virtual machine, without the file extension. By default this is
+    "packer-BUILDNAME", where "BUILDNAME" is the name of the build.
+- name: reassign_mac
+  type: bool
+  docs: |
+    If this is "false" the MAC address of the first
+    NIC will reused when imported else a new MAC address will be generated
+    by Parallels. Defaults to "false".

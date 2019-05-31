@@ -1,0 +1,7 @@
+source_path: builder/triton/source_machine_config.go
+name: MachineImageFilter
+required: []
+not_required:
+- name: most_recent
+  type: bool
+  docs: Most Recent

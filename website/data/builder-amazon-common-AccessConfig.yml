@@ -1,0 +1,76 @@
+source_path: builder/amazon/common/access_config.go
+name: AccessConfig
+required:
+- name: access_key
+  type: string
+  docs: |
+    The access key used to communicate with AWS. Learn
+    how to set this
+- name: region
+  type: string
+  docs: |
+    The name of the region, such as us-east-1, in which
+    to launch the EC2 instance to create the AMI.
+- name: secret_key
+  type: string
+  docs: |
+    The secret key used to communicate with AWS. Learn
+    how to set this
+not_required:
+- name: custom_endpoint_ec2
+  type: string
+  docs: |
+    This option is useful if you use a cloud
+    provider whose API is compatible with aws EC2. Specify another endpoint
+    like this https://ec2.custom.endpoint.com.
+- name: decode_authorization_messages
+  type: bool
+  docs: |
+    Enable automatic decoding of
+    any encoded authorization (error) messages using the
+    sts:DecodeAuthorizationMessage API. Note: requires that the effective
+    user/role have permissions to sts:DecodeAuthorizationMessage on resource
+    *. Default false.
+- name: insecure_skip_tls_verify
+  type: bool
+  docs: |
+    This allows skipping TLS
+    verification of the AWS EC2 endpoint. The default is false.
+- name: mfa_code
+  type: string
+  docs: |
+    The MFA
+    TOTP
+    code. This should probably be a user variable since it changes all the
+    time.
+- name: profile
+  type: string
+  docs: |
+    The profile to use in the shared credentials file for
+    AWS. See Amazon's documentation on specifying
+    profiles
+    for more details.
+- name: skip_region_validation
+  type: bool
+  docs: |
+    Set to true if you want to skip
+    validation of the ami_regions configuration option. Default false.
+- name: skip_metadata_api_check
+  type: bool
+  docs: Skip Metadata Api Check
+- name: token
+  type: string
+  docs: |
+    The access token to use. This is different from the
+    access key and secret key. If you're not sure what this is, then you
+    probably don't need it. This will also be read from the AWS_SESSION_TOKEN
+    environmental variable.
+- name: vault_aws_engine
+  type: VaultAWSEngineOptions
+  docs: |
+    Get credentials from Hashicorp Vault's aws
+    secrets engine. You must already have created a role to use. For more
+    information about generating credentials via the Vault engine, see the
+    Vault
+    docs.
+    If you set this flag, you must also set the below options:

@@ -1,0 +1,24 @@
+source_path: builder/parallels/common/hw_config.go
+name: HWConfig
+required: []
+not_required:
+- name: cpus
+  type: int
+  docs: |
+    The number of cpus to use for building the VM.
+    Defaults to 1.
+- name: memory
+  type: int
+  docs: |
+    The amount of memory to use for building the VM in
+    megabytes. Defaults to 512 megabytes.
+- name: sound
+  type: bool
+  docs: |
+    Specifies whether to enable the sound device when
+    building the VM. Defaults to false.
+- name: usb
+  type: bool
+  docs: |
+    Specifies whether to enable the USB bus when building
+    the VM. Defaults to false.

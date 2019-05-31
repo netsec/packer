@@ -1,0 +1,14 @@
+source_path: builder/alicloud/ecs/image_config.go
+name: AlicloudDiskDevices
+required: []
+not_required:
+- name: system_disk_mapping
+  type: AlicloudDiskDevice
+  docs: |
+    Image disk mapping for system
+    disk.
+- name: image_disk_mappings
+  type: '&{%!s(token.Pos=2737) <nil> AlicloudDiskDevice}'
+  docs: |
+    Add one or more data
+    disks to the image.

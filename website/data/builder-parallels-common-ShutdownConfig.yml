@@ -1,0 +1,17 @@
+source_path: builder/parallels/common/shutdown_config.go
+name: ShutdownConfig
+required: []
+not_required:
+- name: shutdown_command
+  type: string
+  docs: |
+    The command to use to gracefully shut down the
+    machine once all the provisioning is done. By default this is an empty
+    string, which tells Packer to just forcefully shut down the machine.
+- name: shutdown_timeout
+  type: string
+  docs: |
+    The amount of time to wait after executing the
+    shutdown_command for the virtual machine to actually shut down. If it
+    doesn't shut down in this time, it is an error. By default, the timeout is
+    "5m", or five minutes.

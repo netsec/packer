@@ -1,0 +1,12 @@
+source_path: builder/virtualbox/common/export_opts.go
+name: ExportOpts
+required: []
+not_required:
+- name: export_opts
+  type: '&{%!s(token.Pos=369) <nil> string}'
+  docs: |
+    Additional options to pass to the
+    VBoxManage
+    export. This
+    can be useful for passing product information to include in the resulting
+    appliance file. Packer JSON configuration file example:

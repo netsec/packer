@@ -1,0 +1,32 @@
+source_path: builder/alicloud/ecs/access_config.go
+name: AlicloudAccessConfig
+required:
+- name: access_key
+  type: string
+  docs: |
+    This is the Alicloud access key. It must be
+    provided, but it can also be sourced from the ALICLOUD_ACCESS_KEY
+    environment variable.
+- name: secret_key
+  type: string
+  docs: |
+    This is the Alicloud secret key. It must be
+    provided, but it can also be sourced from the ALICLOUD_SECRET_KEY
+    environment variable.
+- name: region
+  type: string
+  docs: |
+    This is the Alicloud region. It must be provided, but
+    it can also be sourced from the ALICLOUD_REGION environment variables.
+not_required:
+- name: skip_region_validation
+  type: bool
+  docs: |
+    The region validation can be skipped
+    if this value is true, the default value is false.
+- name: security_token
+  type: string
+  docs: |
+    STS access token, can be set through template
+    or by exporting as environment variable such as
+    export SecurityToken=value.

@@ -1,0 +1,213 @@
+source_path: builder/googlecompute/config.go
+name: Config
+required:
+- name: project_id
+  type: string
+  docs: |
+    The project ID that will be used to launch
+    instances and store images.
+- name: source_image
+  type: string
+  docs: |
+    The source image to use to create the new image
+    from. You can also specify source_image_family instead. If both
+    source_image and source_image_family are specified, source_image
+    takes precedence. Example: "debian-8-jessie-v20161027"
+- name: source_image_family
+  type: string
+  docs: |
+    The source image family to use to create
+    the new image from. The image family always returns its latest image that
+    is not deprecated. Example: "debian-8".
+- name: zone
+  type: string
+  docs: |
+    The zone in which to launch the instance used to create
+    the image. Example: "us-central1-a"
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: account_file
+  type: string
+  docs: |
+    The JSON file containing your account
+    credentials. Not required if you run Packer on a GCE instance with a
+    service account. Instructions for creating the file or using service
+    accounts are above.
+- name: accelerator_type
+  type: string
+  docs: |
+    Full or partial URL of the guest accelerator
+    type. GPU accelerators can only be used with
+    "on_host_maintenance": "TERMINATE" option set. Example:
+    "projects/project_id/zones/europe-west1-b/acceleratorTypes/nvidia-tesla-k80"
+- name: accelerator_count
+  type: int64
+  docs: |
+    Number of guest accelerator cards to add to
+    the launched instance.
+- name: address
+  type: string
+  docs: |
+    The name of a pre-allocated static external IP
+    address. Note, must be the name and not the actual IP address.
+- name: disable_default_service_account
+  type: bool
+  docs: |
+    If true, the default service
+    account will not be used if service_account_email is not specified. Set
+    this value to true and omit service_account_email to provision a VM with
+    no service account.
+- name: disk_name
+  type: string
+  docs: |
+    The name of the disk, if unset the instance name
+    will be used.
+- name: disk_size
+  type: int64
+  docs: |
+    The size of the disk in GB. This defaults to 10,
+    which is 10GB.
+- name: disk_type
+  type: string
+  docs: |
+    Type of disk used to back your instance, like
+    pd-ssd or pd-standard. Defaults to pd-standard.
+- name: image_name
+  type: string
+  docs: |
+    The unique name of the resulting image. Defaults to
+    "packer-{{timestamp}}".
+- name: image_description
+  type: string
+  docs: |
+    The description of the resulting image.
+- name: image_encryption_key
+  type: '&{%!s(token.Pos=3381) %!s(*ast.SelectorExpr=&{0xc0000a50a0 0xc0000a50c0})}'
+  docs: |
+    Image encryption key to apply to the created image. Possible values:
+- name: image_family
+  type: string
+  docs: |
+    The name of the image family to which the
+    resulting image belongs. You can create disks by specifying an image family
+    instead of a specific image name. The image family always returns its
+    latest image that is not deprecated.
+- name: image_labels
+  type: '&{%!s(token.Pos=3919) string string}'
+  docs: |
+    Key/value pair labels to
+    apply to the created image.
+- name: image_licenses
+  type: '&{%!s(token.Pos=4078) <nil> string}'
+  docs: |
+    Licenses to apply to the created
+    image.
+- name: instance_name
+  type: string
+  docs: |
+    A name to give the launched instance. Beware
+    that this must be unique. Defaults to "packer-{{uuid}}".
+- name: labels
+  type: '&{%!s(token.Pos=4478) string string}'
+  docs: |
+    Key/value pair labels to apply to
+    the launched instance.
+- name: machine_type
+  type: string
+  docs: |
+    The machine type. Defaults to "n1-standard-1".
+- name: metadata
+  type: '&{%!s(token.Pos=4793) string string}'
+  docs: |
+    Metadata applied to the launched
+    instance.
+- name: min_cpu_platform
+  type: string
+  docs: |
+    A Minimum CPU Platform for VM Instance.
+    Availability and default CPU platforms vary across zones, based on the
+    hardware available in each GCP zone.
+    Details
+- name: network
+  type: string
+  docs: |
+    The Google Compute network id or URL to use for the
+    launched instance. Defaults to "default". If the value is not a URL, it
+    will be interpolated to
+    projects/((network_project_id))/global/networks/((network)). This value
+    is not required if a subnet is specified.
+- name: network_project_id
+  type: string
+  docs: |
+    The project ID for the network and
+    subnetwork to use for launched instance. Defaults to project_id.
+- name: omit_external_ip
+  type: bool
+  docs: |
+    If true, the instance will not have an
+    external IP. use_internal_ip must be true if this property is true.
+- name: on_host_maintenance
+  type: string
+  docs: |
+    Sets Host Maintenance Option. Valid
+    choices are MIGRATE and TERMINATE. Please see GCE Instance Scheduling
+    Options,
+    as not all machine_types support MIGRATE (i.e. machines with GPUs). If
+    preemptible is true this can only be TERMINATE. If preemptible is false,
+    it defaults to MIGRATE
+- name: preemptible
+  type: bool
+  docs: |
+    If true, launch a preemptible instance.
+- name: state_timeout
+  type: string
+  docs: |
+    The time to wait for instance state changes.
+    Defaults to "5m".
+- name: region
+  type: string
+  docs: |
+    The region in which to launch the instance. Defaults to
+    the region hosting the specified zone.
+- name: scopes
+  type: '&{%!s(token.Pos=7094) <nil> string}'
+  docs: |
+    The service account scopes for launched
+    instance. Defaults to:
+- name: service_account_email
+  type: string
+  docs: |
+    The service account to be used for
+    launched instance. Defaults to the project's default service account unless
+    disable_default_service_account is true.
+- name: source_image_project_id
+  type: string
+  docs: |
+    The project ID of the project
+    containing the source image.
+- name: startup_script_file
+  type: string
+  docs: |
+    The path to a startup script to run on the
+    VM from which the image will be made.
+- name: subnetwork
+  type: string
+  docs: |
+    The Google Compute subnetwork id or URL to use for
+    the launched instance. Only required if the network has been created with
+    custom subnetting. Note, the region of the subnetwork must match the
+    region or zone in which the VM is launched. If the value is not a URL,
+    it will be interpolated to
+    projects/((network_project_id))/regions/((region))/subnetworks/((subnetwork))
+- name: tags
+  type: '&{%!s(token.Pos=9116) <nil> string}'
+  docs: |
+    Assign network tags to apply firewall rules to
+    VM instance.
+- name: use_internal_ip
+  type: bool
+  docs: |
+    If true, use the instance's internal IP
+    instead of its external IP during building.

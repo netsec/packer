@@ -1,0 +1,28 @@
+source_path: builder/vmware/vmx/config.go
+name: Config
+required:
+- name: source_path
+  type: string
+  docs: |
+    Path to the source VMX file to clone. If
+    remote_type is enabled then this specifies a path on the remote_host.
+not_required:
+- name: linked
+  type: bool
+  docs: |
+    By default Packer creates a 'full' clone of
+    the virtual machine specified in source_path. The resultant virtual
+    machine is fully independant from the parent it was cloned from.
+- name: remote_type
+  type: string
+  docs: |
+    The type of remote machine that will be used to
+    build this VM rather than a local desktop product. The only value accepted
+    for this currently is esx5. If this is not set, a desktop product will
+    be used. By default, this is not set.
+- name: vm_name
+  type: string
+  docs: |
+    This is the name of the VMX file for the new virtual
+    machine, without the file extension. By default this is packer-BUILDNAME,
+    where "BUILDNAME" is the name of the build.

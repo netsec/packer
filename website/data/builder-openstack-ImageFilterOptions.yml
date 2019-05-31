@@ -1,0 +1,16 @@
+source_path: builder/openstack/run_config.go
+name: ImageFilterOptions
+required: []
+not_required:
+- name: name
+  type: string
+  docs: Name
+- name: owner
+  type: string
+  docs: Owner
+- name: tags
+  type: '&{%!s(token.Pos=7408) <nil> string}'
+  docs: Tags
+- name: visibility
+  type: string
+  docs: Visibility

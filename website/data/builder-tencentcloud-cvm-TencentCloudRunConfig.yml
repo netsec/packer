@@ -1,0 +1,99 @@
+source_path: builder/tencentcloud/cvm/run_config.go
+name: TencentCloudRunConfig
+required:
+- name: source_image_id
+  type: string
+  docs: |
+    The base image id of Image you want to create
+    your customized image from.
+- name: instance_type
+  type: string
+  docs: |
+    The instance type your cvm will be launched by.
+    You should reference Instace Type
+     for parameter taking.
+not_required:
+- name: associate_public_ip_address
+  type: bool
+  docs: |
+    Whether allocate public ip to your cvm.
+    Default value is false.
+- name: instance_name
+  type: string
+  docs: |
+    Instance name.
+- name: disk_type
+  type: string
+  docs: |
+    Root disk type your cvm will be launched by. you could
+    reference Disk Type
+    for parameter taking.
+- name: disk_size
+  type: int64
+  docs: |
+    Root disk size your cvm will be launched by. values range(in GB):
+- name: vpc_id
+  type: string
+  docs: |
+    Specify vpc your cvm will be launched by.
+- name: vpc_name
+  type: string
+  docs: |
+    Specify vpc name you will create. if vpc_id is not set, packer will
+    create a vpc for you named this parameter.
+- name: vpc_ip
+  type: string
+  docs: Vpc Ip
+- name: subnet_id
+  type: string
+  docs: |
+    Specify subnet your cvm will be launched by.
+- name: subnet_name
+  type: string
+  docs: |
+    Specify subnet name you will create. if subnet_id is not set, packer will
+    create a subnet for you named this parameter.
+- name: cidr_block
+  type: string
+  docs: |
+    Specify cider block of the vpc you will create if vpc_id not set
+- name: subnect_cidr_block
+  type: string
+  docs: |
+    Specify cider block of the subnet you will create if
+    subnet_id not set
+- name: internet_charge_type
+  type: string
+  docs: Internet Charge Type
+- name: internet_max_bandwidth_out
+  type: int64
+  docs: |
+    Max bandwidth out your cvm will be launched by(in MB).
+    values can be set between 1 ~ 100.
+- name: security_group_id
+  type: string
+  docs: |
+    Specify security group your cvm will be launched by.
+- name: security_group_name
+  type: string
+  docs: |
+    Specify security name you will create if security_group_id not set.
+- name: user_data
+  type: string
+  docs: |
+    userdata.
+- name: user_data_file
+  type: string
+  docs: |
+    userdata file.
+- name: host_name
+  type: string
+  docs: |
+    host name.
+- name: ""
+  type: '&{communicator Config}'
+  docs: |
+    Communicator settings
+- name: ssh_private_ip
+  type: bool
+  docs: SSH Private Ip

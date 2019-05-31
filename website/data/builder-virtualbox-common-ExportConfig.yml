@@ -1,0 +1,9 @@
+source_path: builder/virtualbox/common/export_config.go
+name: ExportConfig
+required: []
+not_required:
+- name: format
+  type: string
+  docs: |
+    Either ovf or ova, this specifies the output format
+    of the exported virtual machine. This defaults to ovf.

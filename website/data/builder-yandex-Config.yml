@@ -1,0 +1,138 @@
+source_path: builder/yandex/config.go
+name: Config
+required:
+- name: folder_id
+  type: string
+  docs: |
+    The folder ID that will be used to launch instances and store images.
+    Alternatively you may set value by environment variable YC_FOLDER_ID.
+- name: token
+  type: string
+  docs: |
+    OAuth token to use to authenticate to Yandex.Cloud. Alternatively you may set
+    value by environment variable YC_TOKEN.
+- name: source_image_family
+  type: string
+  docs: |
+    The source image family to create the new image
+    from. You can also specify source_image_id instead. Just one of a source_image_id or
+    source_image_family must be specified. Example: ubuntu-1804-lts
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Communicator
+- name: endpoint
+  type: string
+  docs: |
+    Non standard api endpoint URL.
+- name: service_account_key_file
+  type: string
+  docs: |
+    Path to file with Service Account key in json format. This
+    is an alternative method to authenticate to Yandex.Cloud. Alternatively you may set environment variable
+    YC_SERVICE_ACCOUNT_KEY_FILE.
+- name: disk_name
+  type: string
+  docs: |
+    The name of the disk, if unset the instance name
+    will be used.
+- name: disk_size_gb
+  type: int
+  docs: |
+    The size of the disk in GB. This defaults to 10, which is 10GB.
+- name: disk_type
+  type: string
+  docs: |
+    Specify disk type for the launched instance. Defaults to network-hdd.
+- name: image_description
+  type: string
+  docs: |
+    The description of the resulting image.
+- name: image_family
+  type: string
+  docs: |2
+     The family name of the resulting image.
+- name: image_labels
+  type: '&{%!s(token.Pos=2359) string string}'
+  docs: |
+    Key/value pair labels to
+    apply to the created image.
+- name: image_name
+  type: string
+  docs: |
+    The unique name of the resulting image. Defaults to
+    packer-{{timestamp}}.
+- name: image_product_ids
+  type: '&{%!s(token.Pos=2692) <nil> string}'
+  docs: |
+    License IDs that indicate which licenses are attached to resulting image.
+- name: instance_cores
+  type: int
+  docs: |
+    The number of cores available to the instance.
+- name: instance_mem_gb
+  type: int
+  docs: |
+    The amount of memory available to the instance, specified in gigabytes.
+- name: instance_name
+  type: string
+  docs: |
+    The name assigned to the instance.
+- name: labels
+  type: '&{%!s(token.Pos=3281) string string}'
+  docs: |
+    Key/value pair labels to apply to
+    the launched instance.
+- name: platform_id
+  type: string
+  docs: |
+    Identifier of the hardware platform configuration for the instance. This defaults to standard-v1.
+- name: metadata
+  type: '&{%!s(token.Pos=3602) string string}'
+  docs: |
+    Metadata applied to the launched
+    instance.
+- name: serial_log_file
+  type: string
+  docs: |
+    File path to save serial port output of the launched instance.
+- name: source_image_folder_id
+  type: string
+  docs: |
+    The ID of the folder containing the source image.
+- name: source_image_id
+  type: string
+  docs: |
+    The source image ID to use to create the new image
+    from.
+- name: subnet_id
+  type: string
+  docs: |
+    The Yandex VPC subnet id to use for
+    the launched instance. Note, the zone of the subnet must match the
+    zone in which the VM is launched.
+- name: use_ipv4_nat
+  type: bool
+  docs: |
+    If set to true, then launched instance will have external internet
+    access.
+- name: use_ipv6
+  type: bool
+  docs: |
+    Set to true to enable IPv6 for the instance being
+    created. This defaults to false, or not enabled.
+    -> Note: ~> Usage of IPv6 will be available in the future.
+- name: use_internal_ip
+  type: bool
+  docs: |
+    If true, use the instance's internal IP address
+    instead of its external IP during building.
+- name: zone
+  type: string
+  docs: |
+    The name of the zone to launch the instance.  This defaults to ru-central1-a.
+- name: state_timeout
+  type: '&{time Duration}'
+  docs: |
+    The time to wait for instance state changes.
+    Defaults to 5m.

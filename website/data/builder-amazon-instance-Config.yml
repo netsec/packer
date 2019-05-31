@@ -1,0 +1,60 @@
+source_path: builder/amazon/instance/builder.go
+name: Config
+required:
+- name: account_id
+  type: string
+  docs: |
+    Your AWS account ID. This is required for bundling
+    the AMI. This is not the same as the access key. You can find your
+    account ID in the security credentials page of your AWS account.
+- name: s3_bucket
+  type: string
+  docs: |
+    The name of the S3 bucket to upload the AMI. This
+    bucket will be created if it doesn't exist.
+- name: x509_cert_path
+  type: string
+  docs: |
+    The local path to a valid X509 certificate for
+    your AWS account. This is used for bundling the AMI. This X509 certificate
+    must be registered with your account from the security credentials page in
+    the AWS console.
+- name: x509_key_path
+  type: string
+  docs: |
+    The local path to the private key for the X509
+    certificate specified by x509_cert_path. This is used for bundling the
+    AMI.
+not_required:
+- name: bundle_destination
+  type: string
+  docs: |
+    The directory on the running instance where
+    the bundled AMI will be saved prior to uploading. By default this is
+    /tmp. This directory must exist and be writable.
+- name: bundle_prefix
+  type: string
+  docs: |
+    The prefix for files created from bundling the
+    root volume. By default this is image-{{timestamp}}. The timestamp
+    variable should be used to make sure this is unique, otherwise it can
+    collide with other created AMIs by Packer in your account.
+- name: bundle_upload_command
+  type: string
+  docs: |
+    The command to use to upload the bundled
+    volume. See the "custom bundle commands" section below for more
+    information.
+- name: bundle_vol_command
+  type: string
+  docs: |
+    The command to use to bundle the volume.
+    See the "custom bundle commands" section below for more information.
+- name: x509_upload_path
+  type: string
+  docs: |
+    The path on the remote machine where the X509
+    certificate will be uploaded. This path must already exist and be writable.
+    X509 certificates are uploaded after provisioning is run, so it is
+    perfectly okay to create this directory as part of the provisioning
+    process. Defaults to /tmp.

@@ -1,0 +1,146 @@
+source_path: builder/hyperone/config.go
+name: Config
+required:
+- name: token
+  type: string
+  docs: |
+    The authentication token used to access your account.
+    This can be either a session token or a service account token.
+    If not defined, the builder will attempt to find it in the following order:
+- name: project
+  type: string
+  docs: |
+    The id or name of the project. This field is required
+    only if using session tokens. It should be skipped when using service
+    account authentication.
+- name: source_image
+  type: string
+  docs: |
+    ID or name of the image to launch server from.
+- name: vm_type
+  type: string
+  docs: |
+    ID or name of the type this server should be created with.
+- name: disk_size
+  type: float32
+  docs: |
+    Size of the created disk, in GiB.
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: api_url
+  type: string
+  docs: |
+    Custom API endpoint URL, compatible with HyperOne.
+    It can also be specified via environment variable HYPERONE_API_URL.
+- name: token_login
+  type: string
+  docs: |
+    Login (an e-mail) on HyperOne platform. Set this
+    if you want to fetch the token by SSH authentication.
+- name: state_timeout
+  type: '&{time Duration}'
+  docs: |
+    Timeout for waiting on the API to complete
+    a request. Defaults to 5m.
+- name: image_name
+  type: string
+  docs: |
+    The name of the resulting image. Defaults to
+    "packer-{{timestamp}}"
+    (see configuration templates for more info).
+- name: image_description
+  type: string
+  docs: |
+    The description of the resulting image.
+- name: image_tags
+  type: '&{%!s(token.Pos=2489) string %!s(*ast.InterfaceType=&{2500 0xc0000967e0 false})}'
+  docs: |
+    Key/value pair tags to
+    add to the created image.
+- name: image_service
+  type: string
+  docs: |
+    The service of the resulting image.
+- name: vm_name
+  type: string
+  docs: |
+    The name of the created server.
+- name: vm_tags
+  type: '&{%!s(token.Pos=2999) string %!s(*ast.InterfaceType=&{3010 0xc000096840 false})}'
+  docs: |
+    Key/value pair tags to
+    add to the created server.
+- name: disk_name
+  type: string
+  docs: |
+    The name of the created disk.
+- name: disk_type
+  type: string
+  docs: |
+    The type of the created disk. Defaults to ssd.
+- name: network
+  type: string
+  docs: |
+    The ID of the network to attach to the created server.
+- name: private_ip
+  type: string
+  docs: |
+    The ID of the private IP within chosen network
+    that should be assigned to the created server.
+- name: public_ip
+  type: string
+  docs: |
+    The ID of the public IP that should be assigned to
+    the created server. If network is chosen, the public IP will be associated
+    with server's private IP.
+- name: public_netadp_service
+  type: string
+  docs: |
+    Custom service of public network adapter.
+    Can be useful when using custom api_url. Defaults to public.
+- name: chroot_disk
+  type: bool
+  docs: Chroot Disk
+- name: chroot_disk_size
+  type: float32
+  docs: Chroot Disk Size
+- name: chroot_disk_type
+  type: string
+  docs: Chroot Disk Type
+- name: chroot_mount_path
+  type: string
+  docs: Chroot Mount Path
+- name: chroot_mounts
+  type: '&{%!s(token.Pos=4406) <nil> %!s(*ast.ArrayType=&{4408 <nil> 0xc0000a98a0})}'
+  docs: Chroot Mounts
+- name: chroot_copy_files
+  type: '&{%!s(token.Pos=4470) <nil> string}'
+  docs: Chroot Copy Files
+- name: chroot_command_wrapper
+  type: string
+  docs: Chroot Command Wrapper
+- name: mount_options
+  type: '&{%!s(token.Pos=4609) <nil> string}'
+  docs: Mount Options
+- name: mount_partition
+  type: string
+  docs: Mount Partition
+- name: pre_mount_commands
+  type: '&{%!s(token.Pos=4729) <nil> string}'
+  docs: Pre Mount Commands
+- name: post_mount_commands
+  type: '&{%!s(token.Pos=4793) <nil> string}'
+  docs: Post Mount Commands
+- name: ssh_keys
+  type: '&{%!s(token.Pos=4928) <nil> string}'
+  docs: |
+    List of SSH keys by name or id to be added
+    to the server on launch.
+- name: user_data
+  type: string
+  docs: |
+    User data to launch with the server. Packer will not
+    automatically wait for a user script to finish before shutting down the
+    instance, this must be handled in a provisioner.

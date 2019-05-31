@@ -1,0 +1,18 @@
+source_path: builder/amazon/ebssurrogate/builder.go
+name: Config
+required:
+- name: ami_root_device
+  type: RootBlockDevice
+  docs: |
+    A block device mapping
+    describing the root device of the AMI. This looks like the mappings in
+    ami_block_device_mapping, except with an additional field:
+not_required:
+- name: run_volume_tags
+  type: '&{awscommon TagMap}'
+  docs: Volume Run Tags
+- name: ami_architecture
+  type: string
+  docs: |
+    what architecture to use when registering the
+    final AMI; valid options are "x86_64" or "arm64". Defaults to "x86_64".

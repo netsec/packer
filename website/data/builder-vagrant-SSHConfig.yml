@@ -1,0 +1,7 @@
+source_path: builder/vagrant/builder.go
+name: SSHConfig
+required: []
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm

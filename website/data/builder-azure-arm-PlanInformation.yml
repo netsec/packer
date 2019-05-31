@@ -1,0 +1,16 @@
+source_path: builder/azure/arm/config.go
+name: PlanInformation
+required: []
+not_required:
+- name: plan_name
+  type: string
+  docs: Plan Name
+- name: plan_product
+  type: string
+  docs: Plan Product
+- name: plan_publisher
+  type: string
+  docs: Plan Publisher
+- name: plan_promotion_code
+  type: string
+  docs: Plan Promotion Code

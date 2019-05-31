@@ -1,0 +1,38 @@
+source_path: builder/azure/arm/clientconfig.go
+name: ClientConfig
+required: []
+not_required:
+- name: cloud_environment_name
+  type: string
+  docs: |
+    One of Public, China, Germany, or
+    USGovernment. Defaults to Public. Long forms such as
+    USGovernmentCloud and AzureUSGovernmentCloud are also supported.
+- name: client_id
+  type: string
+  docs: |
+    Client ID
+- name: client_secret
+  type: string
+  docs: |
+    Client secret/password
+- name: client_cert_path
+  type: string
+  docs: |
+    Certificate path for client auth
+- name: client_jwt
+  type: string
+  docs: |
+    JWT bearer token for client auth (RFC 7523, Sec. 2.2)
+- name: object_id
+  type: string
+  docs: Object ID
+- name: tenant_id
+  type: string
+  docs: |
+    The account identifier with which your client_id and
+    subscription_id are associated. If not specified, tenant_id will be
+    looked up using subscription_id.
+- name: subscription_id
+  type: string
+  docs: Subscription ID

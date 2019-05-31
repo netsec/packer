@@ -1,0 +1,29 @@
+source_path: builder/docker/ecr_login.go
+name: AwsAccessConfig
+required: []
+not_required:
+- name: aws_access_key
+  type: string
+  docs: |
+    The AWS access key used to communicate with
+    AWS. Learn how to set
+    this.
+- name: aws_secret_key
+  type: string
+  docs: |
+    The AWS secret key used to communicate with
+    AWS. Learn how to set
+    this.
+- name: aws_token
+  type: string
+  docs: |
+    The AWS access token to use. This is different from
+    the access key and secret key. If you're not sure what this is, then you
+    probably don't need it. This will also be read from the AWS_SESSION_TOKEN
+    environmental variable.
+- name: aws_profile
+  type: string
+  docs: |
+    The AWS shared credentials profile used to
+    communicate with AWS. Learn how to set
+    this.

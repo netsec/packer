@@ -1,0 +1,30 @@
+source_path: builder/amazon/ebsvolume/builder.go
+name: Config
+required: []
+not_required:
+- name: ebs_volumes
+  type: '&{%!s(token.Pos=919) <nil> BlockDevice}'
+  docs: |
+    Add the block device
+    mappings to the AMI. The block device mappings allow for keys:
+- name: ena_support
+  type: '&{%!s(token.Pos=1439) bool}'
+  docs: |
+    Enable enhanced networking (ENA but not
+    SriovNetSupport) on HVM-compatible AMIs. If set, add
+    ec2:ModifyInstanceAttribute to your AWS IAM policy. If false, this will
+    disable enhanced networking in the final AMI as opposed to passing the
+    setting through unchanged from the source. Note: you must make sure
+    enhanced networking is enabled on your instance. See Amazon's
+    documentation on enabling enhanced
+    networking.
+- name: sriov_support
+  type: bool
+  docs: |
+    Enable enhanced networking (SriovNetSupport but
+    not ENA) on HVM-compatible AMIs. If true, add
+    ec2:ModifyInstanceAttribute to your AWS IAM policy. Note: you must make
+    sure enhanced networking is enabled on your instance. See Amazon's
+    documentation on enabling enhanced
+    networking.
+    Default false.

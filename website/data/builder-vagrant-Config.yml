@@ -1,0 +1,135 @@
+source_path: builder/vagrant/builder.go
+name: Config
+required:
+- name: source_path
+  type: string
+  docs: |
+    URL of the vagrant box to use, or the name of the
+    vagrant box. hashicorp/precise64, ./mylocalbox.box and
+    https://example.com/my-box.box are all valid source boxes. If your
+    source is a .box file, whether locally or from a URL like the latter example
+    above, you will also need to provide a box_name. This option is required,
+    unless you set global_id. You may only set one or the other, not both.
+- name: global_id
+  type: string
+  docs: |
+    the global id of a Vagrant box already added to Vagrant
+    on your system. You can find the global id of your Vagrant boxes using the
+    command vagrant global-status; your global_id will be a 7-digit number and
+    letter comination that you'll find in the leftmost column of the
+    global-status output.  If you choose to use global_id instead of
+    source_box, Packer will skip the Vagrant initialize and add steps, and
+    simply launch the box directly using the global id.
+not_required:
+- name: output_dir
+  type: string
+  docs: |
+    The directory to create that will contain
+    your output box. We always create this directory and run from inside of it to
+    prevent Vagrant init collisions. If unset, it will be set to packer- plus
+    your buildname.
+- name: checksum
+  type: string
+  docs: |
+    The checksum for the .box file. The type of the
+    checksum is specified with checksum_type, documented below.
+- name: checksum_type
+  type: string
+  docs: |
+    The type of the checksum specified in checksum.
+    Valid values are none, md5, sha1, sha256, or sha512. Although the
+    checksum will not be verified when checksum_type is set to "none", this is
+    not recommended since OVA files can be very large and corruption does happen
+    from time to time.
+- name: box_name
+  type: string
+  docs: |
+    if your source_box is a boxfile that we need to add
+    to Vagrant, this is the name to give it. If left blank, will default to
+    "packer_" plus your buildname.
+- name: provider
+  type: string
+  docs: |
+    The vagrant provider.
+    This parameter is required when source_path have more than one provider,
+    or when using vagrant-cloud post-processor. Defaults to unset.
+- name: communicator
+  type: string
+  docs: Communicator
+- name: vagrantfile_template
+  type: string
+  docs: |
+    What vagrantfile to use
+- name: teardown_method
+  type: string
+  docs: |
+    Whether to halt, suspend, or destroy the box when
+    the build has completed. Defaults to "halt"
+- name: box_version
+  type: string
+  docs: |
+    What box version to use when initializing Vagrant.
+- name: template
+  type: string
+  docs: |
+    a path to a golang template for a
+    vagrantfile. Our default template can be found
+    here. So far the only template variables available to you are {{ .BoxName }} and
+    {{ .SyncedFolder }}, which correspond to the Packer options box_name and
+    synced_folder.
+- name: synced_folder
+  type: string
+  docs: Synced Folder
+- name: skip_add
+  type: bool
+  docs: |
+    Don't call "vagrant add" to add the box to your local
+    environment; this is necessary if you want to launch a box that is already
+    added to your vagrant environment.
+- name: add_cacert
+  type: string
+  docs: |
+    Equivalent to setting the
+    --cacert
+    option in vagrant add; defaults to unset.
+- name: add_capath
+  type: string
+  docs: |
+    Equivalent to setting the
+    --capath option
+    in vagrant add; defaults to unset.
+- name: add_cert
+  type: string
+  docs: |
+    Equivalent to setting the
+    --cert option in
+    vagrant add; defaults to unset.
+- name: add_clean
+  type: bool
+  docs: |
+    Equivalent to setting the
+    --clean flag in
+    vagrant add; defaults to unset.
+- name: add_force
+  type: bool
+  docs: |
+    Equivalent to setting the
+    --force flag in
+    vagrant add; defaults to unset.
+- name: add_insecure
+  type: bool
+  docs: |
+    Equivalent to setting the
+    --insecure flag in
+    vagrant add; defaults to unset.
+- name: skip_package
+  type: bool
+  docs: |
+    if true, Packer will not call vagrant package to
+    package your base box into its own standalone .box file.
+- name: output_vagrantfile
+  type: string
+  docs: Output Vagrantfile
+- name: package_include
+  type: '&{%!s(token.Pos=5716) <nil> string}'
+  docs: Package Include

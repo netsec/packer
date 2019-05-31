@@ -1,0 +1,188 @@
+source_path: builder/hyperv/iso/builder.go
+name: Config
+required: []
+not_required:
+- name: disk_size
+  type: uint
+  docs: |
+    The size, in megabytes, of the hard disk to create
+    for the VM. By default, this is 40 GB.
+- name: disk_block_size
+  type: uint
+  docs: |
+    The block size of the VHD to be created.
+    Recommended disk block size for Linux hyper-v guests is 1 MiB. This
+    defaults to "32 MiB".
+- name: memory
+  type: uint
+  docs: |
+    The amount, in megabytes, of RAM to assign to the
+    VM. By default, this is 1 GB.
+- name: secondary_iso_images
+  type: '&{%!s(token.Pos=2589) <nil> string}'
+  docs: |
+    A list of ISO paths to
+    attach to a VM when it is booted. This is most useful for unattended
+    Windows installs, which look for an Autounattend.xml file on removable
+    media. By default, no secondary ISO will be attached.
+- name: guest_additions_mode
+  type: string
+  docs: |
+    If set to attach then attach and
+    mount the ISO image specified in guest_additions_path. If set to
+    none then guest additions are not attached and mounted; This is the
+    default.
+- name: guest_additions_path
+  type: string
+  docs: |
+    The path to the ISO image for guest
+    additions.
+- name: vm_name
+  type: string
+  docs: |
+    This is the name of the new virtual machine,
+    without the file extension. By default this is "packer-BUILDNAME",
+    where "BUILDNAME" is the name of the build.
+- name: switch_name
+  type: string
+  docs: |
+    The name of the switch to connect the virtual
+    machine to. By default, leaving this value unset will cause Packer to
+    try and determine the switch to use by looking for an external switch
+    that is up and running.
+- name: switch_vlan_id
+  type: string
+  docs: |
+    This is the VLAN of the virtual switch's
+    network card. By default none is set. If none is set then a VLAN is not
+    set on the switch's network card. If this value is set it should match
+    the VLAN specified in by vlan_id.
+- name: mac_address
+  type: string
+  docs: |
+    This allows a specific MAC address to be used on
+    the default virtual network card. The MAC address must be a string with
+    no delimiters, for example "0000deadbeef".
+- name: vlan_id
+  type: string
+  docs: |
+    This is the VLAN of the virtual machine's network
+    card for the new virtual machine. By default none is set. If none is set
+    then VLANs are not set on the virtual machine's network card.
+- name: cpus
+  type: uint
+  docs: |
+    The number of CPUs the virtual machine should use. If
+    this isn't specified, the default is 1 CPU.
+- name: generation
+  type: uint
+  docs: |
+    The Hyper-V generation for the virtual machine. By
+    default, this is 1. Generation 2 Hyper-V virtual machines do not support
+    floppy drives. In this scenario use secondary_iso_images instead. Hard
+    drives and DVD drives will also be SCSI and not IDE.
+- name: enable_mac_spoofing
+  type: bool
+  docs: |
+    If true enable MAC address spoofing
+    for the virtual machine. This defaults to false.
+- name: use_legacy_network_adapter
+  type: bool
+  docs: |
+    If true use a legacy network adapter as the NIC.
+    This defaults to false. A legacy network adapter is fully emulated NIC, and is thus
+    supported by various exotic operating systems, but this emulation requires
+    additional overhead and should only be used if absolutely necessary.
+- name: enable_dynamic_memory
+  type: bool
+  docs: |
+    If true enable dynamic memory for
+    the virtual machine. This defaults to false.
+- name: enable_secure_boot
+  type: bool
+  docs: |
+    If true enable secure boot for the
+    virtual machine. This defaults to false. See secure_boot_template
+    below for additional settings.
+- name: secure_boot_template
+  type: string
+  docs: |
+    The secure boot template to be
+    configured. Valid values are "MicrosoftWindows" (Windows) or
+    "MicrosoftUEFICertificateAuthority" (Linux). This only takes effect if
+    enable_secure_boot is set to "true". This defaults to "MicrosoftWindows".
+- name: enable_virtualization_extensions
+  type: bool
+  docs: |
+    If true enable
+    virtualization extensions for the virtual machine. This defaults to
+    false. For nested virtualization you need to enable MAC spoofing,
+    disable dynamic memory and have at least 4GB of RAM assigned to the
+    virtual machine.
+- name: temp_path
+  type: string
+  docs: |
+    The location under which Packer will create a
+    directory to house all the VM files and folders during the build.
+    By default %TEMP% is used which, for most systems, will evaluate to
+    %USERPROFILE%/AppData/Local/Temp.
+- name: configuration_version
+  type: string
+  docs: |
+    This allows you to set the vm version when
+     calling New-VM to generate the vm.
+- name: keep_registered
+  type: bool
+  docs: |
+    If "true", Packer will not delete the VM from
+    The Hyper-V manager.
+- name: communicator
+  type: string
+  docs: Communicator
+- name: disk_additional_size
+  type: '&{%!s(token.Pos=7959) <nil> uint}'
+  docs: |
+    The size or sizes of any
+    additional hard disks for the VM in megabytes. If this is not specified
+    then the VM will only contain a primary hard disk. Additional drives
+    will be attached to the SCSI interface only. The builder uses
+    expandable rather than fixed-size virtual hard disks, so the actual
+    file representing the disk will not use the full size unless it is
+    full.
+- name: skip_compaction
+  type: bool
+  docs: |
+    If true skip compacting the hard disk for
+    the virtual machine when exporting. This defaults to false.
+- name: skip_export
+  type: bool
+  docs: |
+    If true Packer will skip the export of the VM.
+    If you are interested only in the VHD/VHDX files, you can enable this
+    option. The resulting VHD/VHDX file will be output to
+    <output_directory>/Virtual Hard Disks. By default this option is false
+    and Packer will export the VM to output_directory.
+- name: differencing_disk
+  type: bool
+  docs: |
+    If true enables differencing disks. Only
+    the changes will be written to the new disk. This is especially useful if
+    your source is a VHD/VHDX. This defaults to false.
+- name: use_fixed_vhd_format
+  type: bool
+  docs: |
+    If true, creates the boot disk on the
+    virtual machine as a fixed VHD format disk. The default is false, which
+    creates a dynamic VHDX format disk. This option requires setting
+    generation to 1, skip_compaction to true, and
+    differencing_disk to false. Additionally, any value entered for
+    disk_block_size will be ignored. The most likely use case for this
+    option is outputing a disk that is in the format required for upload to
+    Azure.
+- name: headless
+  type: bool
+  docs: |
+    Packer defaults to building Hyper-V virtual
+    machines by launching a GUI that shows the console of the machine being
+    built. When this value is set to true, the machine will start without a
+    console.

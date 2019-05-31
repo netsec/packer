@@ -1,0 +1,20 @@
+source_path: builder/vmware/common/tools_config.go
+name: ToolsConfig
+required: []
+not_required:
+- name: tools_upload_flavor
+  type: string
+  docs: |
+    The flavor of the VMware Tools ISO to
+    upload into the VM. Valid values are darwin, linux, and windows. By
+    default, this is empty, which means VMware tools won't be uploaded.
+- name: tools_upload_path
+  type: string
+  docs: |
+    The path in the VM to upload the
+    VMware tools. This only takes effect if tools_upload_flavor is non-empty.
+    This is a configuration
+    template that has a single
+    valid variable: Flavor, which will be the value of tools_upload_flavor.
+    By default the upload path is set to {{.Flavor}}.iso. This setting is not
+    used when remote_type is esx5.

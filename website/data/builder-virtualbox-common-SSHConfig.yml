@@ -1,0 +1,29 @@
+source_path: builder/virtualbox/common/ssh_config.go
+name: SSHConfig
+required: []
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: ssh_host_port_min
+  type: int
+  docs: |
+    The minimum and
+    maximum port to use for the SSH port on the host machine which is forwarded
+    to the SSH port on the guest machine. Because Packer often runs in parallel,
+    Packer will choose a randomly available port in this range to use as the
+    host port. By default this is 2222 to 4444.
+- name: ssh_host_port_max
+  type: int
+  docs: SSH Host Port Max
+- name: ssh_skip_nat_mapping
+  type: bool
+  docs: |
+    Defaults to false. When enabled, Packer
+    does not setup forwarded port mapping for SSH requests and uses ssh_port
+    on the host to communicate to the virtual machine.
+- name: ssh_wait_timeout
+  type: '&{time Duration}'
+  docs: |
+    These are deprecated, but we keep them around for BC
+    TODO(@mitchellh): remove

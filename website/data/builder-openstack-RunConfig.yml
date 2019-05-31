@@ -1,0 +1,159 @@
+source_path: builder/openstack/run_config.go
+name: RunConfig
+required:
+- name: source_image
+  type: string
+  docs: |
+    The ID or full URL to the base image to use. This
+    is the image that will be used to launch a new server and provision it.
+    Unless you specify completely custom SSH settings, the source image must
+    have cloud-init installed so that the keypair gets assigned properly.
+- name: source_image_name
+  type: string
+  docs: |
+    The name of the base image to use. This is
+    an alternative way of providing source_image and only either of them can
+    be specified.
+- name: source_image_filter
+  type: ImageFilter
+  docs: |
+    The search filters for determining the base
+    image to use. This is an alternative way of providing source_image and
+    only one of these methods can be used. source_image will override the
+    filters.
+- name: flavor
+  type: string
+  docs: |
+    The ID, name, or full URL for the desired flavor for
+    the server to be created.
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: availability_zone
+  type: string
+  docs: |
+    The availability zone to launch the server
+    in. If this isn't specified, the default enforced by your OpenStack cluster
+    will be used. This may be required for some OpenStack clusters.
+- name: rackconnect_wait
+  type: bool
+  docs: |
+    For rackspace, whether or not to wait for
+    Rackconnect to assign the machine an IP address before connecting via SSH.
+    Defaults to false.
+- name: floating_ip_network
+  type: string
+  docs: |
+    The ID or name of an external network that
+    can be used for creation of a new floating IP.
+- name: floating_ip
+  type: string
+  docs: |
+    A specific floating IP to assign to this instance.
+- name: reuse_ips
+  type: bool
+  docs: |
+    Whether or not to attempt to reuse existing
+    unassigned floating ips in the project before allocating a new one. Note
+    that it is not possible to safely do this concurrently, so if you are
+    running multiple openstack builds concurrently, or if other processes are
+    assigning and using floating IPs in the same openstack project while packer
+    is running, you should not set this to true. Defaults to false.
+- name: security_groups
+  type: '&{%!s(token.Pos=3073) <nil> string}'
+  docs: |
+    A list of security groups by name to
+    add to this instance.
+- name: networks
+  type: '&{%!s(token.Pos=3227) <nil> string}'
+  docs: |
+    A list of networks by UUID to attach to
+    this instance.
+- name: ports
+  type: '&{%!s(token.Pos=3371) <nil> string}'
+  docs: |
+    A list of ports by UUID to attach to this
+    instance.
+- name: user_data
+  type: string
+  docs: |
+    User data to apply when launching the instance. Note
+    that you need to be careful about escaping characters due to the templates
+    being JSON. It is often more convenient to use user_data_file, instead.
+    Packer will not automatically wait for a user script to finish before
+    shutting down the instance this must be handled in a provisioner.
+- name: user_data_file
+  type: string
+  docs: |
+    Path to a file that will be used for the user
+    data when launching the instance.
+- name: instance_name
+  type: string
+  docs: |
+    Name that is applied to the server instance
+    created by Packer. If this isn't specified, the default is same as
+    image_name.
+- name: instance_metadata
+  type: '&{%!s(token.Pos=4496) string string}'
+  docs: |
+    Metadata that is
+    applied to the server instance created by Packer. Also called server
+    properties in some documentation. The strings have a max size of 255 bytes
+    each.
+- name: force_delete
+  type: bool
+  docs: |
+    Whether to force the OpenStack instance to be
+    forcefully deleted. This is useful for environments that have
+    reclaim / soft deletion enabled. By default this is false.
+- name: config_drive
+  type: bool
+  docs: |
+    Whether or not nova should use ConfigDrive for
+    cloud-init metadata.
+- name: floating_ip_pool
+  type: string
+  docs: |
+    Deprecated use floating_ip_network
+    instead.
+- name: use_blockstorage_volume
+  type: bool
+  docs: |
+    Use Block Storage service volume for
+    the instance root volume instead of Compute service local volume (default).
+- name: volume_name
+  type: string
+  docs: |
+    Name of the Block Storage service volume. If this
+    isn't specified, random string will be used.
+- name: volume_type
+  type: string
+  docs: |
+    Type of the Block Storage service volume. If this
+    isn't specified, the default enforced by your OpenStack cluster will be
+    used.
+- name: volume_size
+  type: int
+  docs: |
+    Size of the Block Storage service volume in GB. If
+    this isn't specified, it is set to source image min disk value (if set) or
+    calculated from the source image bytes size. Note that in some cases this
+    needs to be specified, if use_blockstorage_volume is true.
+- name: volume_availability_zone
+  type: string
+  docs: |
+    Availability zone of the Block
+    Storage service volume. If omitted, Compute instance availability zone will
+    be used. If both of Compute instance and Block Storage volume availability
+    zones aren't specified, the default enforced by your OpenStack cluster will
+    be used.
+- name: openstack_provider
+  type: string
+  docs: |
+    Not really used, but here for BC
+- name: use_floating_ip
+  type: bool
+  docs: |
+    Deprecated use floating_ip or
+    floating_ip_pool instead.

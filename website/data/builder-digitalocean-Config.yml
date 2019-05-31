@@ -1,0 +1,92 @@
+source_path: builder/digitalocean/config.go
+name: Config
+required:
+- name: api_token
+  type: string
+  docs: |
+    The client TOKEN to use to access your account. It
+    can also be specified via environment variable DIGITALOCEAN_API_TOKEN, if
+    set.
+- name: region
+  type: string
+  docs: |
+    The name (or slug) of the region to launch the droplet
+    in. Consequently, this is the region where the snapshot will be available.
+    See
+    https://developers.digitalocean.com/documentation/v2/#list-all-regions
+    for the accepted region names/slugs.
+- name: size
+  type: string
+  docs: |
+    The name (or slug) of the droplet size to use. See
+    https://developers.digitalocean.com/documentation/v2/#list-all-sizes
+    for the accepted size names/slugs.
+- name: image
+  type: string
+  docs: |
+    The name (or slug) of the base image to use. This is the
+    image that will be used to launch a new droplet and provision it. See
+    https://developers.digitalocean.com/documentation/v2/#list-all-images
+    for details on how to get a list of the accepted image names/slugs.
+not_required:
+- name: ""
+  type: '&{communicator Config}'
+  docs: Comm
+- name: api_url
+  type: string
+  docs: |
+    Non standard api endpoint URL. Set this if you are
+    using a DigitalOcean API compatible service. It can also be specified via
+    environment variable DIGITALOCEAN_API_URL.
+- name: private_networking
+  type: bool
+  docs: |
+    Set to true to enable private networking
+    for the droplet being created. This defaults to false, or not enabled.
+- name: monitoring
+  type: bool
+  docs: |
+    Set to true to enable monitoring for the droplet
+    being created. This defaults to false, or not enabled.
+- name: ipv6
+  type: bool
+  docs: |
+    Set to true to enable ipv6 for the droplet being
+    created. This defaults to false, or not enabled.
+- name: snapshot_name
+  type: string
+  docs: |
+    The name of the resulting snapshot that will
+    appear in your account. Defaults to "packer-{{timestamp}}" (see
+    configuration templates for more info).
+- name: snapshot_regions
+  type: '&{%!s(token.Pos=2830) <nil> string}'
+  docs: |
+    The regions of the resulting
+    snapshot that will appear in your account.
+- name: state_timeout
+  type: '&{time Duration}'
+  docs: |
+    The time to wait, as a duration string, for a
+    droplet to enter a desired state (such as "active") before timing out. The
+    default state timeout is "6m".
+- name: droplet_name
+  type: string
+  docs: |
+    The name assigned to the droplet. DigitalOcean
+    sets the hostname of the machine to this value.
+- name: user_data
+  type: string
+  docs: |
+    User data to launch with the Droplet. Packer will
+    not automatically wait for a user script to finish before shutting down the
+    instance this must be handled in a provisioner.
+- name: user_data_file
+  type: string
+  docs: |
+    Path to a file that will be used for the user
+    data when launching the Droplet.
+- name: tags
+  type: '&{%!s(token.Pos=3844) <nil> string}'
+  docs: |
+    Tags to apply to the droplet when it is created

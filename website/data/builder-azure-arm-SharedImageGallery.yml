@@ -1,0 +1,24 @@
+source_path: builder/azure/arm/config.go
+name: SharedImageGallery
+required: []
+not_required:
+- name: subscription
+  type: string
+  docs: Subscription
+- name: resource_group
+  type: string
+  docs: Resource Group
+- name: gallery_name
+  type: string
+  docs: Gallery Name
+- name: image_name
+  type: string
+  docs: Image Name
+- name: image_version
+  type: string
+  docs: |
+    Specify a specific version of an OS to boot from.
+    Defaults to latest. There may be a difference in versions available
+    across regions due to image synchronization latency. To ensure a consistent
+    version across regions set this value to one that is available in all
+    regions where you are deploying.

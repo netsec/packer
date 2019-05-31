@@ -1,0 +1,43 @@
+source_path: builder/triton/target_image_config.go
+name: TargetImageConfig
+required:
+- name: image_name
+  type: string
+  docs: |
+    The name the finished image in Triton will be
+    assigned. Maximum 512 characters but should in practice be much shorter
+    (think between 5 and 20 characters). For example postgresql-95-server for
+    an image used as a PostgreSQL 9.5 server.
+- name: image_version
+  type: string
+  docs: |
+    The version string for this image. Maximum 128
+    characters. Any string will do but a format of Major.Minor.Patch is
+    strongly advised by Joyent. See Semantic Versioning
+    for more information on the Major.Minor.Patch versioning format.
+not_required:
+- name: image_description
+  type: string
+  docs: |
+    Description of the image. Maximum 512
+    characters.
+- name: image_homepage
+  type: string
+  docs: |
+    URL of the homepage where users can find
+    information about the image. Maximum 128 characters.
+- name: image_eula_url
+  type: string
+  docs: |
+    URL of the End User License Agreement (EULA)
+    for the image. Maximum 128 characters.
+- name: image_acls
+  type: '&{%!s(token.Pos=1658) <nil> string}'
+  docs: |
+    The UUID's of the users which will have
+    access to this image. When omitted only the owner (the Triton user whose
+    credentials are used) will have access to the image.
+- name: image_tags
+  type: '&{%!s(token.Pos=1769) string string}'
+  docs: |
+    Tag applied to the image.

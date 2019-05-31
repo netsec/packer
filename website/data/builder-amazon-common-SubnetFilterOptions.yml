@@ -1,0 +1,10 @@
+source_path: builder/amazon/common/run_config.go
+name: SubnetFilterOptions
+required: []
+not_required:
+- name: most_free
+  type: bool
+  docs: Most Free
+- name: random
+  type: bool
+  docs: Random
