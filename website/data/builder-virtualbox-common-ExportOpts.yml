@@ -3,7 +3,7 @@ name: ExportOpts
 required: []
 not_required:
 - name: export_opts
-  type: '&{%!s(token.Pos=369) <nil> string}'
+  type: '[]string'
   docs: |
     Additional options to pass to the
     VBoxManage

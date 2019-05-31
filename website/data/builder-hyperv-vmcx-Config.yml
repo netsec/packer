@@ -8,7 +8,7 @@ not_required:
     The amount, in megabytes, of RAM to assign to the
     VM. By default, this is 1 GB.
 - name: secondary_iso_images
-  type: '&{%!s(token.Pos=1904) <nil> string}'
+  type: '[]string'
   docs: |
     A list of ISO paths to
     attach to a VM when it is booted. This is most useful for unattended

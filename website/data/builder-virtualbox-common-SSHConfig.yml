@@ -3,7 +3,7 @@ name: SSHConfig
 required: []
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: ssh_host_port_min
   type: int
@@ -23,7 +23,7 @@ not_required:
     does not setup forwarded port mapping for SSH requests and uses ssh_port
     on the host to communicate to the virtual machine.
 - name: ssh_wait_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     These are deprecated, but we keep them around for BC
     TODO(@mitchellh): remove

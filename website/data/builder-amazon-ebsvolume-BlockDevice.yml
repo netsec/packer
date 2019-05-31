@@ -3,7 +3,7 @@ name: BlockDevice
 required: []
 not_required:
 - name: tags
-  type: '&{awscommon TagMap}'
+  type: awscommon.TagMap
   docs: |
     Tags applied to the AMI. This is a
     template engine, see Build template

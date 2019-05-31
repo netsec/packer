@@ -106,7 +106,7 @@ not_required:
     Store the image in zone-resilient storage. You need to create it
     in a region that supports availability zones.
 - name: azure_tags
-  type: '&{%!s(token.Pos=7288) string %!s(*ast.StarExpr=&{7299 0xc0000f0340})}'
+  type: map[string]*string
   docs: |
     the user can define up to 15
     tags. Tag names cannot exceed 512 characters, and tag values cannot exceed
@@ -192,7 +192,7 @@ not_required:
     Specify the size of the OS disk in GB
     (gigabytes). Values of zero or less than zero are ignored.
 - name: disk_additional_size
-  type: '&{%!s(token.Pos=11427) <nil> int32}'
+  type: '[]int32'
   docs: |
     The size(s) of any additional
     hard disks for the VM in gigabytes. If this is not specified then the VM
@@ -208,7 +208,7 @@ not_required:
     Specify the disk caching type. Valid values
     are None, ReadOnly, and ReadWrite. The default value is ReadWrite.
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: async_resourcegroup_delete
   type: bool

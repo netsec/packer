@@ -27,7 +27,7 @@ required:
     Size of the created disk, in GiB.
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: api_url
   type: string
@@ -40,7 +40,7 @@ not_required:
     Login (an e-mail) on HyperOne platform. Set this
     if you want to fetch the token by SSH authentication.
 - name: state_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     Timeout for waiting on the API to complete
     a request. Defaults to 5m.
@@ -55,7 +55,7 @@ not_required:
   docs: |
     The description of the resulting image.
 - name: image_tags
-  type: '&{%!s(token.Pos=2489) string %!s(*ast.InterfaceType=&{2500 0xc0000967e0 false})}'
+  type: map[string]interface{}
   docs: |
     Key/value pair tags to
     add to the created image.
@@ -68,7 +68,7 @@ not_required:
   docs: |
     The name of the created server.
 - name: vm_tags
-  type: '&{%!s(token.Pos=2999) string %!s(*ast.InterfaceType=&{3010 0xc000096840 false})}'
+  type: map[string]interface{}
   docs: |
     Key/value pair tags to
     add to the created server.
@@ -113,28 +113,28 @@ not_required:
   type: string
   docs: Chroot Mount Path
 - name: chroot_mounts
-  type: '&{%!s(token.Pos=4406) <nil> %!s(*ast.ArrayType=&{4408 <nil> 0xc0000a98a0})}'
+  type: '[][]string'
   docs: Chroot Mounts
 - name: chroot_copy_files
-  type: '&{%!s(token.Pos=4470) <nil> string}'
+  type: '[]string'
   docs: Chroot Copy Files
 - name: chroot_command_wrapper
   type: string
   docs: Chroot Command Wrapper
 - name: mount_options
-  type: '&{%!s(token.Pos=4609) <nil> string}'
+  type: '[]string'
   docs: Mount Options
 - name: mount_partition
   type: string
   docs: Mount Partition
 - name: pre_mount_commands
-  type: '&{%!s(token.Pos=4729) <nil> string}'
+  type: '[]string'
   docs: Pre Mount Commands
 - name: post_mount_commands
-  type: '&{%!s(token.Pos=4793) <nil> string}'
+  type: '[]string'
   docs: Post Mount Commands
 - name: ssh_keys
-  type: '&{%!s(token.Pos=4928) <nil> string}'
+  type: '[]string'
   docs: |
     List of SSH keys by name or id to be added
     to the server on launch.

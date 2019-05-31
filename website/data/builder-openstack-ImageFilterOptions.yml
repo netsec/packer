@@ -9,7 +9,7 @@ not_required:
   type: string
   docs: Owner
 - name: tags
-  type: '&{%!s(token.Pos=7408) <nil> string}'
+  type: '[]string'
   docs: Tags
 - name: visibility
   type: string

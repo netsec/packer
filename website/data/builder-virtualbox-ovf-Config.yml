@@ -67,7 +67,7 @@ not_required:
     on the local file system. If it is not available locally, the builder will
     download the proper guest additions ISO from the internet.
 - name: import_flags
-  type: '&{%!s(token.Pos=4527) <nil> string}'
+  type: '[]string'
   docs: |
     Additional flags to pass to
     VBoxManage import. This can be used to add additional command-line flags

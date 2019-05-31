@@ -7,17 +7,17 @@ required:
     The name of the resulting image.
 not_required:
 - name: metadata
-  type: '&{%!s(token.Pos=521) string string}'
+  type: map[string]string
   docs: |
     Glance metadata that will be
     applied to the image.
 - name: image_visibility
-  type: '&{imageservice ImageVisibility}'
+  type: imageservice.ImageVisibility
   docs: |
     One of "public", "private", "shared", or
     "community".
 - name: image_members
-  type: '&{%!s(token.Pos=937) <nil> string}'
+  type: '[]string'
   docs: |
     List of members to add to the image
     after creation. An image member is usually a project (also called the
@@ -28,7 +28,7 @@ not_required:
     Disk format of the resulting image. This
     option works if use_blockstorage_volume is true.
 - name: image_tags
-  type: '&{%!s(token.Pos=1290) <nil> string}'
+  type: '[]string'
   docs: |
     List of tags to add to the image after
     creation.

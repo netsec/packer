@@ -3,12 +3,12 @@ name: Config
 required: []
 not_required:
 - name: ebs_volumes
-  type: '&{%!s(token.Pos=919) <nil> BlockDevice}'
+  type: '[]BlockDevice'
   docs: |
     Add the block device
     mappings to the AMI. The block device mappings allow for keys:
 - name: ena_support
-  type: '&{%!s(token.Pos=1439) bool}'
+  type: '*bool'
   docs: |
     Enable enhanced networking (ENA but not
     SriovNetSupport) on HVM-compatible AMIs. If set, add

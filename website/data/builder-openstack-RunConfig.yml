@@ -28,7 +28,7 @@ required:
     the server to be created.
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: availability_zone
   type: string
@@ -61,17 +61,17 @@ not_required:
     assigning and using floating IPs in the same openstack project while packer
     is running, you should not set this to true. Defaults to false.
 - name: security_groups
-  type: '&{%!s(token.Pos=3073) <nil> string}'
+  type: '[]string'
   docs: |
     A list of security groups by name to
     add to this instance.
 - name: networks
-  type: '&{%!s(token.Pos=3227) <nil> string}'
+  type: '[]string'
   docs: |
     A list of networks by UUID to attach to
     this instance.
 - name: ports
-  type: '&{%!s(token.Pos=3371) <nil> string}'
+  type: '[]string'
   docs: |
     A list of ports by UUID to attach to this
     instance.
@@ -95,7 +95,7 @@ not_required:
     created by Packer. If this isn't specified, the default is same as
     image_name.
 - name: instance_metadata
-  type: '&{%!s(token.Pos=4496) string string}'
+  type: map[string]string
   docs: |
     Metadata that is
     applied to the server instance created by Packer. Also called server

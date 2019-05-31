@@ -26,7 +26,7 @@ required:
     the image. Example: "us-central1-a"
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: account_file
   type: string
@@ -84,7 +84,7 @@ not_required:
   docs: |
     The description of the resulting image.
 - name: image_encryption_key
-  type: '&{%!s(token.Pos=3381) %!s(*ast.SelectorExpr=&{0xc0000a50a0 0xc0000a50c0})}'
+  type: '*compute.CustomerEncryptionKey'
   docs: |
     Image encryption key to apply to the created image. Possible values:
 - name: image_family
@@ -95,12 +95,12 @@ not_required:
     instead of a specific image name. The image family always returns its
     latest image that is not deprecated.
 - name: image_labels
-  type: '&{%!s(token.Pos=3919) string string}'
+  type: map[string]string
   docs: |
     Key/value pair labels to
     apply to the created image.
 - name: image_licenses
-  type: '&{%!s(token.Pos=4078) <nil> string}'
+  type: '[]string'
   docs: |
     Licenses to apply to the created
     image.
@@ -110,7 +110,7 @@ not_required:
     A name to give the launched instance. Beware
     that this must be unique. Defaults to "packer-{{uuid}}".
 - name: labels
-  type: '&{%!s(token.Pos=4478) string string}'
+  type: map[string]string
   docs: |
     Key/value pair labels to apply to
     the launched instance.
@@ -119,7 +119,7 @@ not_required:
   docs: |
     The machine type. Defaults to "n1-standard-1".
 - name: metadata
-  type: '&{%!s(token.Pos=4793) string string}'
+  type: map[string]string
   docs: |
     Metadata applied to the launched
     instance.
@@ -172,7 +172,7 @@ not_required:
     The region in which to launch the instance. Defaults to
     the region hosting the specified zone.
 - name: scopes
-  type: '&{%!s(token.Pos=7094) <nil> string}'
+  type: '[]string'
   docs: |
     The service account scopes for launched
     instance. Defaults to:
@@ -202,7 +202,7 @@ not_required:
     it will be interpolated to
     projects/((network_project_id))/regions/((region))/subnetworks/((subnetwork))
 - name: tags
-  type: '&{%!s(token.Pos=9116) <nil> string}'
+  type: '[]string'
   docs: |
     Assign network tags to apply firewall rules to
     VM instance.

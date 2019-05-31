@@ -9,7 +9,7 @@ required:
     ami_block_device_mapping, except with an additional field:
 not_required:
 - name: run_volume_tags
-  type: '&{awscommon TagMap}'
+  type: awscommon.TagMap
   docs: Volume Run Tags
 - name: ami_architecture
   type: string

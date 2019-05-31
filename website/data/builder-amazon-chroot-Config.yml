@@ -10,7 +10,7 @@ required:
     used when from_scratch is set to true.
 not_required:
 - name: chroot_mounts
-  type: '&{%!s(token.Pos=1395) <nil> %!s(*ast.ArrayType=&{1397 <nil> 0xc0000f6760})}'
+  type: '[][]string'
   docs: |
     This is a list of devices to
     mount into the chroot environment. This configuration parameter requires
@@ -26,7 +26,7 @@ not_required:
     template where the .Command variable is replaced with the command to be
     run. Defaults to {{.Command}}.
 - name: copy_files
-  type: '&{%!s(token.Pos=2234) <nil> string}'
+  type: '[]string'
   docs: |
     Paths to files on the running EC2
     instance that will be copied into the chroot environment prior to
@@ -58,7 +58,7 @@ not_required:
     ami_virtualization_type, pre_mount_commands and root_volume_size. The
     below options are also required in this mode only:
 - name: mount_options
-  type: '&{%!s(token.Pos=3973) <nil> string}'
+  type: '[]string'
   docs: |
     Options to supply the mount command
     when mounting devices. Each option will be prefixed with -o and supplied
@@ -82,14 +82,14 @@ not_required:
     template where the .Device variable is replaced with the name of the
     device where the volume is attached.
 - name: post_mount_commands
-  type: '&{%!s(token.Pos=5071) <nil> string}'
+  type: '[]string'
   docs: |
     As pre_mount_commands, but the
     commands are executed after mounting the root device and before the extra
     mount and copy steps. The device and mount path are provided by
     {{.Device}} and {{.MountPath}}.
 - name: pre_mount_commands
-  type: '&{%!s(token.Pos=5476) <nil> string}'
+  type: '[]string'
   docs: |
     A series of commands to execute
     after attaching the root volume and before mounting the chroot. This is not
@@ -116,12 +116,12 @@ not_required:
     value is gp2. You can only specify io1 if building based on top of a
     source_ami which is also io1.
 - name: source_ami_filter
-  type: '&{awscommon AmiFilterOptions}'
+  type: awscommon.AmiFilterOptions
   docs: |
     Filters used to populate the source_ami
     field. Example:
 - name: root_volume_tags
-  type: '&{awscommon TagMap}'
+  type: awscommon.TagMap
   docs: |
     Tags to apply to the
     volumes that are launched. This is a template

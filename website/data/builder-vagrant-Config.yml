@@ -131,5 +131,5 @@ not_required:
   type: string
   docs: Output Vagrantfile
 - name: package_include
-  type: '&{%!s(token.Pos=5716) <nil> string}'
+  type: '[]string'
   docs: Package Include

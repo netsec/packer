@@ -128,7 +128,7 @@ not_required:
     to 0. For those disks containing lots of data, it may require a higher
     timeout value.
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: |
     Communicator settings
 - name: ssh_private_ip

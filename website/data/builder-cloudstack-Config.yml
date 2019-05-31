@@ -52,10 +52,10 @@ required:
     template that will be created.
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: async_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     The time duration to wait for async calls to
     finish. Defaults to 30m.
@@ -71,7 +71,7 @@ not_required:
     Set to true to skip SSL verification.
     Defaults to false.
 - name: cidr_list
-  type: '&{%!s(token.Pos=2091) <nil> string}'
+  type: '[]string'
   docs: |
     List of CIDR's that will have access to the new
     instance. This is needed in order for any provisioners to be able to
@@ -128,7 +128,7 @@ not_required:
     forwarding rule. Set this attribute if you do not want to use the a random
     public port.
 - name: security_groups
-  type: '&{%!s(token.Pos=4366) <nil> string}'
+  type: '[]string'
   docs: |
     A list of security group IDs or
     names to associate the instance with.

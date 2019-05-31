@@ -3,7 +3,7 @@ name: Config
 required: []
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: iso_skip_cache
   type: bool
@@ -122,7 +122,7 @@ not_required:
     the builder. By default this is output-BUILDNAME where "BUILDNAME" is the
     name of the build.
 - name: qemuargs
-  type: '&{%!s(token.Pos=7606) <nil> %!s(*ast.ArrayType=&{7608 <nil> 0xc000102940})}'
+  type: '[][]string'
   docs: |
     Allows complete control over the
     qemu command line (though not, at this time, qemu-img). Each array of
@@ -190,7 +190,7 @@ not_required:
     "BUILDNAME" is the name of the build. Currently, no file extension will be
     used unless it is specified in this option.
 - name: ssh_wait_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     These are deprecated, but we keep them around for BC
     TODO(@mitchellh): remove

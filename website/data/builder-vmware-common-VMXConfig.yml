@@ -3,13 +3,13 @@ name: VMXConfig
 required: []
 not_required:
 - name: vmx_data
-  type: '&{%!s(token.Pos=334) string string}'
+  type: map[string]string
   docs: |
     Arbitrary key/values to enter
     into the virtual machine VMX file. This is for advanced users who want to
     set properties that aren't yet supported by the builder.
 - name: vmx_data_post
-  type: '&{%!s(token.Pos=560) string string}'
+  type: map[string]string
   docs: |
     Identical to vmx_data,
     except that it is run after the virtual machine is shutdown, and before the

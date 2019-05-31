@@ -33,7 +33,7 @@ not_required:
     drives are attached to, defaults to "sata". Valid options are "sata", "ide",
     and "scsi".
 - name: host_interfaces
-  type: '&{%!s(token.Pos=3210) <nil> string}'
+  type: '[]string'
   docs: |
     A list of which interfaces on the
     host should be searched for a IP address. The first IP address found on one

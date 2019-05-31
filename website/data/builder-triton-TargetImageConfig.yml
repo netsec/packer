@@ -32,12 +32,12 @@ not_required:
     URL of the End User License Agreement (EULA)
     for the image. Maximum 128 characters.
 - name: image_acls
-  type: '&{%!s(token.Pos=1658) <nil> string}'
+  type: '[]string'
   docs: |
     The UUID's of the users which will have
     access to this image. When omitted only the owner (the Triton user whose
     credentials are used) will have access to the image.
 - name: image_tags
-  type: '&{%!s(token.Pos=1769) string string}'
+  type: map[string]string
   docs: |
     Tag applied to the image.

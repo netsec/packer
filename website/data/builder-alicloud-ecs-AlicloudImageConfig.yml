@@ -21,27 +21,27 @@ not_required:
     limit of 0 to 256 characters. Leaving it blank means null, which is the
     default value. It cannot begin with http:// or https://.
 - name: image_share_account
-  type: '&{%!s(token.Pos=3913) <nil> string}'
+  type: '[]string'
   docs: |
     The IDs of to-be-added Aliyun
     accounts to which the image is shared. The number of accounts is 1 to 10.
     If number of accounts is greater than 10, this parameter is ignored.
 - name: image_unshare_account
-  type: '&{%!s(token.Pos=4020) <nil> string}'
+  type: '[]string'
   docs: Alicloud Image UN Share Accounts
 - name: image_copy_regions
-  type: '&{%!s(token.Pos=4151) <nil> string}'
+  type: '[]string'
   docs: |
     Copy to the destination regionIds.
 - name: image_copy_names
-  type: '&{%!s(token.Pos=4505) <nil> string}'
+  type: '[]string'
   docs: |
     The name of the destination image,
     [2, 128] English or Chinese characters. It must begin with an
     uppercase/lowercase letter or a Chinese character, and may contain numbers,
     _ or -. It cannot begin with http:// or https://.
 - name: image_encrypted
-  type: '&{%!s(token.Pos=5022) bool}'
+  type: '*bool'
   docs: |
     Whether or not to encrypt the target images,            including those copied if image_copy_regions is specified. If this option
     is set to true, a temporary image will be created from the provisioned
@@ -82,7 +82,7 @@ not_required:
     The region validation can be skipped
     if this value is true, the default value is false.
 - name: tags
-  type: '&{%!s(token.Pos=6799) string string}'
+  type: map[string]string
   docs: |
     Tags applied to the destination
     image and relevant snapshots.

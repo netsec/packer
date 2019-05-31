@@ -62,5 +62,5 @@ not_required:
     access source (0.0.0.0/0) and allowed port (5985) must be created in
     advance.
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm

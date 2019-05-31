@@ -6,7 +6,7 @@ not_required:
   type: string
   docs: Communicator
 - name: virtualbox_version_file
-  type: '&{%!s(token.Pos=638) string}'
+  type: '*string'
   docs: |
     The path within the virtual machine to
     upload a file that contains the VirtualBox version that was used to create

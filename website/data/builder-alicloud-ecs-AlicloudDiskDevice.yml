@@ -47,7 +47,7 @@ not_required:
     Device information of the related instance:
     such as /dev/xvdb It is null unless the Status is In_use.
 - name: disk_encrypted
-  type: '&{%!s(token.Pos=2424) bool}'
+  type: '*bool'
   docs: |
     Whether or not to encrypt the data disk.
     If this option is set to true, the data disk will be encryped and corresponding snapshot in the target image will also be encrypted. By

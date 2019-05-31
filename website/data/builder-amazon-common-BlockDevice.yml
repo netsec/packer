@@ -17,7 +17,7 @@ not_required:
     example, /dev/sdh or xvdh). Required for every device in the block
     device mapping.
 - name: encrypted
-  type: '&{%!s(token.Pos=1103) bool}'
+  type: '*bool'
   docs: |
     Indicates whether or not to encrypt the volume.
     By default, Packer will keep the encryption setting to what it was in

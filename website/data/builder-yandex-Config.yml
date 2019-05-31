@@ -19,7 +19,7 @@ required:
     source_image_family must be specified. Example: ubuntu-1804-lts
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Communicator
 - name: endpoint
   type: string
@@ -53,7 +53,7 @@ not_required:
   docs: |2
      The family name of the resulting image.
 - name: image_labels
-  type: '&{%!s(token.Pos=2359) string string}'
+  type: map[string]string
   docs: |
     Key/value pair labels to
     apply to the created image.
@@ -63,7 +63,7 @@ not_required:
     The unique name of the resulting image. Defaults to
     packer-{{timestamp}}.
 - name: image_product_ids
-  type: '&{%!s(token.Pos=2692) <nil> string}'
+  type: '[]string'
   docs: |
     License IDs that indicate which licenses are attached to resulting image.
 - name: instance_cores
@@ -79,7 +79,7 @@ not_required:
   docs: |
     The name assigned to the instance.
 - name: labels
-  type: '&{%!s(token.Pos=3281) string string}'
+  type: map[string]string
   docs: |
     Key/value pair labels to apply to
     the launched instance.
@@ -88,7 +88,7 @@ not_required:
   docs: |
     Identifier of the hardware platform configuration for the instance. This defaults to standard-v1.
 - name: metadata
-  type: '&{%!s(token.Pos=3602) string string}'
+  type: map[string]string
   docs: |
     Metadata applied to the launched
     instance.
@@ -132,7 +132,7 @@ not_required:
   docs: |
     The name of the zone to launch the instance.  This defaults to ru-central1-a.
 - name: state_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     The time to wait for instance state changes.
     Defaults to 5m.

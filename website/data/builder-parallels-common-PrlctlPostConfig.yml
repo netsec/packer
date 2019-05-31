@@ -3,7 +3,7 @@ name: PrlctlPostConfig
 required: []
 not_required:
 - name: prlctl_post
-  type: '&{%!s(token.Pos=409) <nil> %!s(*ast.ArrayType=&{411 <nil> 0xc00000c400})}'
+  type: '[][]string'
   docs: |
     Identical to prlctl, except
     that it is run after the virtual machine is shutdown, and before the virtual

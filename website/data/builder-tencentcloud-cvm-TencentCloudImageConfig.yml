@@ -30,12 +30,12 @@ not_required:
   type: bool
   docs: Image Force Delete
 - name: image_copy_regions
-  type: '&{%!s(token.Pos=1086) <nil> string}'
+  type: '[]string'
   docs: |
     regions that will be copied to after
     your image created.
 - name: image_share_accounts
-  type: '&{%!s(token.Pos=1237) <nil> string}'
+  type: '[]string'
   docs: |
     accounts that will be shared to
     after your image created.

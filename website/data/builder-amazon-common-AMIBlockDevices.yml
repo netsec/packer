@@ -3,7 +3,7 @@ name: AMIBlockDevices
 required: []
 not_required:
 - name: ami_block_device_mappings
-  type: '&{%!s(token.Pos=3567) <nil> BlockDevice}'
+  type: '[]BlockDevice'
   docs: |
     Add one or
     more block device

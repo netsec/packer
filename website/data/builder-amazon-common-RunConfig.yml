@@ -85,7 +85,7 @@ not_required:
     Filters used to populate the
     security_group_ids field. Example:
 - name: run_tags
-  type: '&{%!s(token.Pos=4812) string string}'
+  type: map[string]string
   docs: |
     Tags to apply to the instance
     that is launched to create the AMI. These tags are not applied to the
@@ -101,7 +101,7 @@ not_required:
     Note that if this is specified, you must be sure the security group allows
     access to the ssh_port given below.
 - name: security_group_ids
-  type: '&{%!s(token.Pos=5494) <nil> string}'
+  type: '[]string'
   docs: |
     A list of security groups as
     described above. Note that if this is specified, you must omit the
@@ -112,7 +112,7 @@ not_required:
     Filters used to populate the source_ami
     field. Example:
 - name: spot_instance_types
-  type: '&{%!s(token.Pos=6809) <nil> string}'
+  type: '[]string'
   docs: |
     a list of acceptable instance
     types to run your build on. We will request a spot instance using the max
@@ -142,7 +142,7 @@ not_required:
     Windows, Linux/UNIX (Amazon VPC), SUSE Linux (Amazon VPC),
     Windows (Amazon VPC)
 - name: spot_tags
-  type: '&{%!s(token.Pos=8047) string string}'
+  type: map[string]string
   docs: |
     Requires spot_price to be
     set. This tells Packer to apply tags to the spot request that is issued.
@@ -164,7 +164,7 @@ not_required:
     generate. By default, Packer generates a name that looks like
     packer_<UUID>, where <UUID> is a 36 character unique identifier.
 - name: temporary_security_group_source_cidrs
-  type: '&{%!s(token.Pos=9051) <nil> string}'
+  type: '[]string'
   docs: |
     A list of IPv4
     CIDR blocks to be authorized access to the instance, when packer is creating a temporary security group.
@@ -195,12 +195,12 @@ not_required:
     subnet_id to be set. If this field is left blank, Packer will try to get
     the VPC ID from the subnet_id.
 - name: windows_password_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     The timeout for waiting for a Windows
     password for Windows instances. Defaults to 20 minutes. Example value:
     10m
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: |
     Communicator settings

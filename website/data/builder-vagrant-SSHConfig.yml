@@ -3,5 +3,5 @@ name: SSHConfig
 required: []
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm

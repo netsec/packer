@@ -3,7 +3,7 @@ name: LaunchBlockDevices
 required: []
 not_required:
 - name: launch_block_device_mappings
-  type: '&{%!s(token.Pos=4264) <nil> BlockDevice}'
+  type: '[]BlockDevice'
   docs: |
     Add one
     or more block devices before the Packer build starts. If you add instance

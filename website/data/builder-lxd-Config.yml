@@ -30,7 +30,7 @@ not_required:
     The number of seconds to sleep between launching
     the LXD instance and provisioning it; defaults to 3 seconds.
 - name: publish_properties
-  type: '&{%!s(token.Pos=1602) string string}'
+  type: map[string]string
   docs: |
     Pass key values to the publish
     step to be set as properties on the output image. This is most helpful to
@@ -38,7 +38,7 @@ not_required:
     https://stgraber.org/2016/03/30/lxd-2-0-image-management-512/
     for more properties.
 - name: launch_config
-  type: '&{%!s(token.Pos=1793) string string}'
+  type: map[string]string
   docs: |
     List of key/value pairs you wish to
     pass to lxc launch via --config. Defaults to empty.

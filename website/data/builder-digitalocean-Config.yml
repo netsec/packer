@@ -30,7 +30,7 @@ required:
     for details on how to get a list of the accepted image names/slugs.
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: api_url
   type: string
@@ -60,12 +60,12 @@ not_required:
     appear in your account. Defaults to "packer-{{timestamp}}" (see
     configuration templates for more info).
 - name: snapshot_regions
-  type: '&{%!s(token.Pos=2830) <nil> string}'
+  type: '[]string'
   docs: |
     The regions of the resulting
     snapshot that will appear in your account.
 - name: state_timeout
-  type: '&{time Duration}'
+  type: time.Duration
   docs: |
     The time to wait, as a duration string, for a
     droplet to enter a desired state (such as "active") before timing out. The
@@ -87,6 +87,6 @@ not_required:
     Path to a file that will be used for the user
     data when launching the Droplet.
 - name: tags
-  type: '&{%!s(token.Pos=3844) <nil> string}'
+  type: '[]string'
   docs: |
     Tags to apply to the droplet when it is created

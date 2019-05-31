@@ -3,7 +3,7 @@ name: VBoxManagePostConfig
 required: []
 not_required:
 - name: vboxmanage_post
-  type: '&{%!s(token.Pos=311) <nil> %!s(*ast.ArrayType=&{313 <nil> 0xc0000962e0})}'
+  type: '[][]string'
   docs: |
     Identical to vboxmanage,
     except that it is run after the virtual machine is shutdown, and before the

@@ -33,7 +33,7 @@ not_required:
     mysql-64-server-image-builder. When omitted defaults to
     packer-builder-[image_name].
 - name: source_machine_networks
-  type: '&{%!s(token.Pos=2357) <nil> string}'
+  type: '[]string'
   docs: |
     The UUID's of Triton
     networks added to the source machine used for creating the image. For
@@ -42,7 +42,7 @@ not_required:
     not specified, instances will be placed into the default Triton public and
     internal networks.
 - name: source_machine_metadata
-  type: '&{%!s(token.Pos=2880) string string}'
+  type: map[string]string
   docs: |
     Triton metadata
     applied to the VM used to create the image. Metadata can be used to pass
@@ -53,7 +53,7 @@ not_required:
     set the user-script metadata key to have Triton start a user supplied
     script after the VM has booted.
 - name: source_machine_tags
-  type: '&{%!s(token.Pos=3041) string string}'
+  type: map[string]string
   docs: |
     Tags applied to the
     VM used to create the image.

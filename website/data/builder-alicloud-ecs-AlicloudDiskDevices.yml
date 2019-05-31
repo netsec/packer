@@ -8,7 +8,7 @@ not_required:
     Image disk mapping for system
     disk.
 - name: image_disk_mappings
-  type: '&{%!s(token.Pos=2737) <nil> AlicloudDiskDevice}'
+  type: '[]AlicloudDiskDevice'
   docs: |
     Add one or more data
     disks to the image.

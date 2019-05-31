@@ -3,7 +3,7 @@ name: Config
 required: []
 not_required:
 - name: disk_additional_size
-  type: '&{%!s(token.Pos=1461) <nil> uint}'
+  type: '[]uint'
   docs: |
     The size(s) of any additional
     hard disks for the VM in megabytes. If this is not specified then the VM

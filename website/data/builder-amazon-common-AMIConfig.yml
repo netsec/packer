@@ -23,25 +23,25 @@ not_required:
     you are building. This option is required to register HVM images. Can be
     paravirtual (default) or hvm.
 - name: ami_users
-  type: '&{%!s(token.Pos=1301) <nil> string}'
+  type: '[]string'
   docs: |
     A list of account IDs that have access to
     launch the resulting AMI(s). By default no additional users other than the
     user creating the AMI has permissions to launch it.
 - name: ami_groups
-  type: '&{%!s(token.Pos=1571) <nil> string}'
+  type: '[]string'
   docs: |
     A list of groups that have access to
     launch the resulting AMI(s). By default no groups have permission to launch
     the AMI. all will make the AMI publicly accessible.
 - name: ami_product_codes
-  type: '&{%!s(token.Pos=1785) <nil> string}'
+  type: '[]string'
   docs: |
     A list of product codes to
     associate with the AMI. By default no product codes are associated with the
     AMI.
 - name: ami_regions
-  type: '&{%!s(token.Pos=2082) <nil> string}'
+  type: '[]string'
   docs: |
     A list of regions to copy the AMI to.
     Tags and attributes are copied along with the AMI. AMI copying takes time
@@ -58,7 +58,7 @@ not_required:
     template engine, see Build template
     data for more information.
 - name: ena_support
-  type: '&{%!s(token.Pos=3045) bool}'
+  type: '*bool'
   docs: |
     Enable enhanced networking (ENA but not
     SriovNetSupport) on HVM-compatible AMIs. If set, add
@@ -90,7 +90,7 @@ not_required:
     associated with AMIs, which have been deregistered by force_deregister.
     Default false.
 - name: encrypt_boot
-  type: '&{%!s(token.Pos=4311) bool}'
+  type: '*bool'
   docs: |
     Whether or not to encrypt the resulting AMI when
     copying a provisioned instance to an AMI. By default, Packer will keep the
@@ -107,7 +107,7 @@ not_required:
     This field is validated by Packer, when using an alias, you will have to
     prefix kms_key_id with alias/.
 - name: region_kms_key_ids
-  type: '&{%!s(token.Pos=5610) string string}'
+  type: map[string]string
   docs: |
     a map of regions to copy the ami
     to, along with the custom kms key id (alias or arn) to use for encryption
@@ -128,14 +128,14 @@ not_required:
     template engine, see Build template
     data for more information.
 - name: snapshot_users
-  type: '&{%!s(token.Pos=6218) <nil> string}'
+  type: '[]string'
   docs: |
     A list of account IDs that have
     access to create volumes from the snapshot(s). By default no additional
     users other than the user creating the AMI has permissions to create
     volumes from the backing snapshot(s).
 - name: snapshot_groups
-  type: '&{%!s(token.Pos=6534) <nil> string}'
+  type: '[]string'
   docs: |
     A list of groups that have access to
     create volumes from the snapshot(s). By default no groups have permission

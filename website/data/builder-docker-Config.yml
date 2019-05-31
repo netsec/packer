@@ -3,7 +3,7 @@ name: Config
 required: []
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: container_dir
   type: string
@@ -28,7 +28,7 @@ not_required:
     If true, run the docker container with the
     --privileged flag. This defaults to false if not set.
 - name: run_command
-  type: '&{%!s(token.Pos=2780) <nil> string}'
+  type: '[]string'
   docs: |
     An array of arguments to pass to
     docker run in order to run the container. By default this is set to

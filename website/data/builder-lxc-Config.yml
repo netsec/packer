@@ -10,7 +10,7 @@ required:
   docs: |
     The LXC template name to use.
 - name: template_environment_vars
-  type: '&{%!s(token.Pos=2812) <nil> string}'
+  type: '[]string'
   docs: |
     Environmental variables to
     use to build the template with.
@@ -38,28 +38,28 @@ not_required:
     The timeout in seconds to wait for the the
     container to start. Defaults to 20 seconds.
 - name: create_options
-  type: '&{%!s(token.Pos=1535) <nil> string}'
+  type: '[]string'
   docs: |
     Options to pass to lxc-create. For
     instance, you can specify a custom LXC container configuration file with
     ["-f", "/path/to/lxc.conf"]. Defaults to []. See man 1 lxc-create for
     available options.
 - name: start_options
-  type: '&{%!s(token.Pos=1843) <nil> string}'
+  type: '[]string'
   docs: |
     Options to pass to lxc-start. For
     instance, you can override parameters from the LXC container configuration
     file via ["--define", "KEY=VALUE"]. Defaults to []. See
     man 1 lxc-start for available options.
 - name: attach_options
-  type: '&{%!s(token.Pos=2159) <nil> string}'
+  type: '[]string'
   docs: |
     Options to pass to lxc-attach. For
     instance, you can prevent the container from inheriting the host machine's
     environment by specifying ["--clear-env"]. Defaults to []. See
     man 1 lxc-attach for available options.
 - name: template_parameters
-  type: '&{%!s(token.Pos=2658) <nil> string}'
+  type: '[]string'
   docs: |
     Options to pass to the given
     lxc-template command, usually located in

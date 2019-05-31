@@ -40,7 +40,7 @@ required:
     X64-60GB
 not_required:
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: Comm
 - name: snapshot_name
   type: string

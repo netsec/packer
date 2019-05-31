@@ -91,7 +91,7 @@ not_required:
   docs: |
     host name.
 - name: ""
-  type: '&{communicator Config}'
+  type: communicator.Config
   docs: |
     Communicator settings
 - name: ssh_private_ip

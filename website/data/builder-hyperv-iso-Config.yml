@@ -19,7 +19,7 @@ not_required:
     The amount, in megabytes, of RAM to assign to the
     VM. By default, this is 1 GB.
 - name: secondary_iso_images
-  type: '&{%!s(token.Pos=2589) <nil> string}'
+  type: '[]string'
   docs: |
     A list of ISO paths to
     attach to a VM when it is booted. This is most useful for unattended
@@ -140,7 +140,7 @@ not_required:
   type: string
   docs: Communicator
 - name: disk_additional_size
-  type: '&{%!s(token.Pos=7959) <nil> uint}'
+  type: '[]uint'
   docs: |
     The size or sizes of any
     additional hard disks for the VM in megabytes. If this is not specified
